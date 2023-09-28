@@ -15,7 +15,7 @@ export const Recover = () => {
                 <div className='opacity-70 text-sm mt-[15px] '>
                     Email
                 </div>
-                <input className='mt-[10px] h-[38px] w-[220px] border-[1px] opacity-70 text-sm border-black border-opacity-60 rounded-md'>
+                <input className='mt-[10px] h-[38px] w-[220px] border-[1px] opacity-70 text-sm border-black border-opacity-60 rounded-md outline-none pl-[6px]'>
                 </input>
             </div>
             <div className='flex mt-[10px]'>

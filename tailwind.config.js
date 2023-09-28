@@ -6,6 +6,8 @@ module.exports = {
     extend: {
       colors:{
         customOrange: '#F9482B',
+        customShadow: '3fdd2cc',
+
       },
     },
     fontFamily: {

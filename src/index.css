@@ -22,6 +22,11 @@ code {
   box-shadow: 0 4px 15px 0 #fca79a, 0 6px 20px 0 #fca79a;
 }
 
+#loginShadow{
+  box-shadow: 0 4px 15px 0 #fdd2cc, 0 6px 20px 0 #fdd2cc;
+
+}
+
 .active{
   border-bottom: solid 2px black;
 }
@@ -55,4 +60,8 @@ code {
 
 #Description{
   line-height: 20px;
+}
+
+#Rooms{
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
 }

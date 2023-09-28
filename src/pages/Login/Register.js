@@ -1,8 +1,14 @@
-import React from "react";
+import { React, useState } from "react";
 import Login from "../../images/login.png";
 import { Link } from "react-router-dom";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 export const Register = () => {
+  const [visible, setVisible] = useState(false);
+  const [visible1, setVisible1] = useState(false);
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
+
   return (
     <div className="flex h-[100%] w-[100%] overflow-auto">
       <div className=" sticky mt-[8vh] left-[5vw] z-10">
@@ -16,27 +22,61 @@ export const Register = () => {
             </div>
             <div className="Username font-inter ">
               <div className="opacity-70 text-sm mt-[15px] ">Username</div>
-              <input className="mt-[10px] h-[38px] w-[220px] border-[1px] opacity-70 text-sm border-black border-opacity-60 rounded-md"></input>
+              <input
+                required
+                className="mt-[10px] h-[38px] w-[220px] border-[1px] opacity-70 text-sm border-black border-opacity-60 rounded-md outline-none pl-[6px]"
+              ></input>
             </div>
             <div className="Email font-inter ">
               <div className="opacity-70 text-sm mt-[15px] ">Email</div>
-              <input className="mt-[10px] h-[38px] w-[220px] border-[1px] opacity-70 text-sm border-black border-opacity-60 rounded-md"></input>
+              <input
+                required
+                className="mt-[10px] h-[38px] w-[220px] border-[1px] opacity-70 text-sm border-black border-opacity-60 rounded-md outline-none pl-[6px]"
+              ></input>
             </div>
             <div className="Password font-inter x">
-              <div className="opacity-70 text-sm mt-[10px]">Password</div>
+              <div className="opacity-70 text-sm mt-[10px]">
+                Password
+              </div >
+              <div className="relative text-sm mt-[10px] h-[38px] w-[220px] border-[1px] border-black border-opacity-60 rounded-md flex ">
               <input
-                className=" opacity-70 text-sm mt-[10px] h-[38px] w-[220px] border-[1px] border-black border-opacity-60 rounded-md"
-                placeholder="   Create a password"
+              value={password}
+              onChange={ (e) => setPassword(e.target.value) }
+              type= {visible ? "text" : "password"}
+              required
+                className="  w-[100vw] rounded-md opacity-70 outline-none pl-[6px]"
+                placeholder="Create a password"
               ></input>
+              <span className="mr-[30px]" onClick={() => setVisible(!visible)}>
+                {visible ? (
+                  <AiFillEyeInvisible className="h-[20px] w-[20px] fill-customOrange mt-[8px] " />
+                ) : (
+                  <AiFillEye className="h-[20px] w-[20px] fill-customOrange mt-[8px] " />
+                )}
+              </span>
+              </div>
             </div>
             <div className="Confirm font-inter x">
               <div className="opacity-70 text-sm mt-[10px]">
                 Confirm Password
               </div>
+              <div className="relative text-sm mt-[10px] h-[38px] w-[220px] border-[1px] border-black border-opacity-60 rounded-md flex ">
               <input
-                className=" opacity-70 text-sm mt-[10px] h-[38px] w-[220px] border-[1px] border-black border-opacity-60 rounded-md"
-                placeholder="   Create a password"
+               value={confirm}
+               type={visible1 ? "text" : "password"}
+               onChange={ (e) => setConfirm(e.target.value)}
+                required
+                className=" pl-[6px] w-[100vw] rounded-md opacity-70 outline-none"
+                placeholder= "Create a password"
               ></input>
+              <span className="mr-[30px]" onClick={() => setVisible1(!visible1)}>
+                {visible1 ? (
+                  <AiFillEyeInvisible className="h-[20px] w-[20px] fill-customOrange mt-[8px] " />
+                ) : (
+                  <AiFillEye className="h-[20px] w-[20px] fill-customOrange mt-[8px] " />
+                )}
+              </span>
+              </div>
             </div>
             <div className="flex mt-[10px]">
               <div>
