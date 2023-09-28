@@ -1,5 +1,5 @@
 export const GetUserInfo = () => {
   const authData = JSON.parse(localStorage.getItem("auth")) || {};
-  const { name, profilePhoto, userID, isAuth } = authData;
-  return { name, profilePhoto, userID, isAuth };
+  const { username, profilePhoto, userID, isAuth } = authData;
+  return { username, profilePhoto, userID, isAuth };
 };
