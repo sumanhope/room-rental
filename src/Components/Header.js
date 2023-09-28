@@ -7,8 +7,8 @@ import { signOut } from "firebase/auth";
 import { auth } from "../config/firebase-config";
 
 const Header = () => {
-  const { name, isAuth } = GetUserInfo();
-  const username = isAuth ? name : null;
+  const { username, isAuth } = GetUserInfo();
+  const displayname = isAuth ? username : null;
   const signUserOut = async () => {
     try {
       await signOut(auth);
@@ -53,7 +53,7 @@ const Header = () => {
         <div className="login flex items-center gap-x-8 font-inter">
           {isAuth ? (
             // If the user is authenticated, display the username
-            <div className="font-bold">{username}</div>
+            <div className="font-bold">{displayname}</div>
           ) : (
             // If the user is not authenticated, display the "Sign in" link
             <Link to="/Signin" className="font-bold">

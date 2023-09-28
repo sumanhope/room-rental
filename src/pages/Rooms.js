@@ -5,7 +5,6 @@ import { RiEqualizerLine } from "react-icons/ri";
 import Roomboxs from "../Components/Roomboxs";
 
 export const Rooms = () => {
- 
   return (
     <div className="font-inter">
       <Header />
@@ -42,14 +41,14 @@ export const Rooms = () => {
         </div>
       </div>
 
-<div className="flex flex-grow-1 flex-wrap gap-x-20 justify-center">
-  <Roomboxs/>
-  <Roomboxs/>
-  <Roomboxs/>
-  <Roomboxs/>
-  <Roomboxs/>
-  <Roomboxs/>
-</div>
+      <div className="flex flex-grow-1 flex-wrap gap-x-20 justify-center">
+        <Roomboxs />
+        <Roomboxs />
+        <Roomboxs />
+        <Roomboxs />
+        <Roomboxs />
+        <Roomboxs />
+      </div>
     </div>
   );
 };

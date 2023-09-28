@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "roomrentalnp",
+    "site": "roomrentalnpr",
     "public": "build",
     "ignore": [
       "firebase.json",
