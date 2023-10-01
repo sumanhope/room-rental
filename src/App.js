@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Header from './Components/Header';
-import {Home, Rooms, Favorite, About, OurTeam, Contact, Signin, Register, Recover} from './Components/index';
+import {Home, Rooms, Favorite, About, OurTeam, Contact, Signin, Register, Recover, Room, RoomInfo} from './Components/index';
+
 
 
 const App = () => {
@@ -17,6 +17,7 @@ const App = () => {
       <Route path='/Signin' element={<Signin/>}/>
       <Route path='/Register' element={<Register/>}/>
       <Route path='/Recover' element={<Recover/>}/>
+      <Route path='/Rooms/RoomInfo' element={<RoomInfo/>}/>
       </Routes>
     </div>
   );

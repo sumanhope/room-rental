@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
@@ -20,7 +20,7 @@ const Header = () => {
   };
   // console.log(isAuth, username);
   return (
-    <nav className="sticky top-0">
+    <nav className="sticky top-0 z-40">
       <div
         id="header"
         className="h-20 py-12 px-[10%] shadow-xl flex items-center justify-between  top-0 bg-white overflow-hidden"
@@ -56,9 +56,9 @@ const Header = () => {
             <div className="font-bold">{displayname}</div>
           ) : (
             // If the user is not authenticated, display the "Sign in" link
-            <Link to="/Signin" className="font-bold">
+            <NavLink to="/Signin" className="nav-link font-bold">
               Sign in
-            </Link>
+            </NavLink>
           )}
           {isAuth ? (
             <button
