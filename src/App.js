@@ -1,9 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import {Home, Rooms, Favorite, About, OurTeam, Contact, Signin, Register, Recover, Room, RoomInfo} from './Components/index';
-
-
-
 const App = () => {
   return (
     <div>
@@ -22,5 +19,4 @@ const App = () => {
     </div>
   );
 };
-
 export default App;
