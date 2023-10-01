@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../Components/Header";
 import { AiOutlineSearch } from "react-icons/ai";
 import { RiEqualizerLine } from "react-icons/ri";
@@ -7,8 +7,8 @@ import Roomboxs from "../Components/Roomboxs";
 export const Rooms = () => {
   return (
     <div className="font-inter">
-      <Header />
-      <div className="ml-[10vw]">
+      <Header className='z-10' />
+      <div className="ml-[8vw]">
         <div className="flex font-inter mt-[6vh]">
           <div className="flex  justify-around items-center border-2 border-black border-opacity-50 rounded-md text-sm ">
             <AiOutlineSearch className=" h-[25px] w-[25px] fill-customOrange ml-[8px] pl-[0px] " />
@@ -41,13 +41,15 @@ export const Rooms = () => {
         </div>
       </div>
 
-      <div className="flex flex-grow-1 flex-wrap gap-x-20 justify-center">
+<div className="ml-[8vw] flex  justify-center">
+      <div className="flex flex-wrap  justify-center">
         <Roomboxs />
         <Roomboxs />
         <Roomboxs />
         <Roomboxs />
         <Roomboxs />
         <Roomboxs />
+      </div>
       </div>
     </div>
   );
