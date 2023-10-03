@@ -25,7 +25,7 @@ export const Home = () => {
           </div>
           <div className="flex gap-x-16 mt-[30px]">
             <Link
-            to="/Rooms"
+              to="/Rooms"
               id="Shadow"
               className="py-3 px-4 bg-customOrange font-bold text-white  hover:-translate-y-1 duration-500 flex "
             >
