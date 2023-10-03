@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import {RiArrowLeftSLine, RiArrowRightSLine} from 'react-icons/ri';
 import {HiOutlineArrowsExpand} from 'react-icons/hi';
 import {MdOutlineFullscreenExit} from 'react-icons/md';
+import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 
 const slideStyles = {
   width: "100%",
@@ -30,6 +31,7 @@ const ImageSlider = ({ slides, parentWidth }) => {
   const autoSlide = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [screen, setFullScreen] = useState(true);
+  const [bookmark, setBookmark] = useState(true);
   // const [fullscreenImage, setFullscreenImage] = useState("")
 
   const goBack = () => {
@@ -74,13 +76,16 @@ const ImageSlider = ({ slides, parentWidth }) => {
     <div className="h-[100%] relative">
       <div>
         {/* <div >
-          {fullscreenImage && <img src={fullscreenImage} alt="" />}
+          {fullscreenImage && <img src={fullscreenImage} alt="" />}--
 
         </div> */}
       <div  onClick={goBack} className= 'z-10 leftArrow absolute translate-y-[25vh] text-white  text-[60px]  hover:text-customOrange cursor-pointer'><RiArrowLeftSLine /></div>
         <div  onClick={goForward} className='z-10 rightArrow absolute translate-y-[25vh] text-white text-[60px] ml-[540px] hover:text-customOrange cursor-pointer'><RiArrowRightSLine/></div>
         <div id="fullScreen Rooms" className=" absolute h-[32px] w-[32px] bg-white z-10 rounded-lg flex justify-center items-center ml-[15px] mt-[53.5vh]" onClick={ () => (setFullScreen(!screen))}> 
             {screen? <HiOutlineArrowsExpand className="text-customOrange h-[20px] w-[20px] cursor-pointer" /> : <MdOutlineFullscreenExit className="text-customOrange h-[25px] w-[25px] cursor-pointer"/>}
+        </div>
+        <div id="fullScreen Rooms" className=" absolute h-[32px] w-[32px] bg-white z-10 rounded-lg flex justify-center items-center ml-[550px] mt-[53.5vh] cursor-pointer" onClick={ () => (setBookmark(!bookmark))}> 
+        {bookmark ? <BsBookmark className="fill-customOrange"/> : <BsFillBookmarkFill className=" fill-customOrange"/> }
         </div>
       </div>
        <div style={slidesContainerOverflowStyles}>
