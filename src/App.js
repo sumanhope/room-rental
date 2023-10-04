@@ -3,7 +3,8 @@ import './App.css';
 import {Home, Rooms, Favorite, About, OurTeam, Contact, Signin, Register, Recover, Room, RoomInfo} from './Components/index';
 const App = () => {
   return (
-    <div>
+    <div id="" className=''>
+      <div>
       <Routes>
       <Route exact path='/' element={<Home/>}/>
       <Route path='/Rooms' element={<Rooms/>}/>
@@ -16,6 +17,7 @@ const App = () => {
       <Route path='/Recover' element={<Recover/>}/>
       <Route path='/Rooms/RoomInfo' element={<RoomInfo/>}/>
       </Routes>
+      </div>
     </div>
   );
 };

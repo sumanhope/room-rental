@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useRef, useState} from "react";
 import Room from "../images/room.jpg";
 import Sofa from "../images/sofa.jpg";
 import Temple from "../images/temple.jpg";
 import Header from "../Components/Header";
 import ImageSlider from "../Components/ImageSlider";
+
 
 export const RoomInfo = () => {
     const slides = [
@@ -12,15 +13,17 @@ export const RoomInfo = () => {
         {url : Temple , title: "Image2"}
     ]
 
+   
+  
   return (
-    <div className="font-inter">
+    <div className="font-inter ">
       <Header/>
-      <div className="flex flex-wrap justify-center mt-[13vh] gap-x-10 z-0">
+      <div className="flex flex-wrap justify-center mt-[13vh] gap-x-10 z-0">     
         <div className="h-[60vh] w-[600px] " >
             <ImageSlider slides={slides} parentWidth={600}></ImageSlider>  
           {/* <img className="h-[60vh] w-[45vw]" src={Room} alt=""></img> */}
         </div>
-        <div className="overflow-y-scroll h-[60vh] pr-[2vw] overflow-hidden">
+        <div className="overflow-y-scroll h-[60vh] pr-[2vw] overflow-hidden scroll-smooth">
           <div className="text-2xl mt-[8px] ">Bhaktapur Durbar</div>
           <div className="text-sm">
             <div className="mt-[8px]"> Rooms - {2} </div>
