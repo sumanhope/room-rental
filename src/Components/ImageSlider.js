@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import {RiArrowLeftSLine, RiArrowRightSLine} from 'react-icons/ri';
-import {HiOutlineArrowsExpand} from 'react-icons/hi';
-import {MdOutlineFullscreenExit} from 'react-icons/md';
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
+import { HiOutlineArrowsExpand } from "react-icons/hi";
+import { MdOutlineFullscreenExit } from "react-icons/md";
 
 const slideStyles = {
   width: "100%",
@@ -12,7 +12,7 @@ const slideStyles = {
 };
 
 const dotStyle = (slideIndex, currentIndex) => ({
-  color: slideIndex === currentIndex ? 'red' : 'black',
+  color: slideIndex === currentIndex ? "red" : "black",
 });
 
 const slidesContainerStyles = {
@@ -27,12 +27,18 @@ const slidesContainerOverflowStyles = {
   object: "cover",
 };
 
-const ImageSlider = ({ slides, parentWidth }) => {
+const ImageSlider = ({ slides, parentWidth, props }) => {
   const autoSlide = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [screen, setFullScreen] = useState(true);
   const [bookmark, setBookmark] = useState(true);
-  // const [fullscreenImage, setFullscreenImage] = useState("")
+  const [screen, setFullScreen] = useState(true);
+  const usefull = useRef();
+  const useIcon = useRef();
+
+  const fullScreen = () => {
+    useIcon.current.classList.toggle("iconMove");
+    usefull.current.classList.toggle("screen");
+  };
 
   const goBack = () => {
     const isFirstSlide = currentIndex === 0;
@@ -55,9 +61,10 @@ const ImageSlider = ({ slides, parentWidth }) => {
     backgroundImage: `url(${slides[slideIndex].url})`,
     width: `${parentWidth}px`,
   });
+
   const getSlidesContainerStylesWithWidth = () => ({
     ...slidesContainerStyles,
-    width: '1800px',
+    width: "1800px",
     transform: `translateX(${-(currentIndex * parentWidth)}px)`,
   });
 
@@ -67,38 +74,81 @@ const ImageSlider = ({ slides, parentWidth }) => {
     }
     autoSlide.current = setTimeout(() => {
       goForward();
-    }, 4000);
+    }, 5000);
 
     return () => clearTimeout(autoSlide.current);
   }, [goForward]);
 
-  return (
-    <div className="h-[100%] relative">
-      <div>
-        {/* <div >
-          {fullscreenImage && <img src={fullscreenImage} alt="" />}--
 
-        </div> */}
-      <div  onClick={goBack} className= 'z-10 leftArrow absolute translate-y-[25vh] text-white  text-[60px]  hover:text-customOrange cursor-pointer'><RiArrowLeftSLine /></div>
-        <div  onClick={goForward} className='z-10 rightArrow absolute translate-y-[25vh] text-white text-[60px] ml-[540px] hover:text-customOrange cursor-pointer'><RiArrowRightSLine/></div>
-        <div id="fullScreen Rooms" className=" absolute h-[32px] w-[32px] bg-white z-10 rounded-lg flex justify-center items-center ml-[15px] mt-[53.5vh]" onClick={ () => (setFullScreen(!screen))}> 
-            {screen? <HiOutlineArrowsExpand className="text-customOrange h-[20px] w-[20px] cursor-pointer" /> : <MdOutlineFullscreenExit className="text-customOrange h-[25px] w-[25px] cursor-pointer"/>}
+
+  return (
+    <div className="h-[100%]">
+      <div ref={usefull} className="hidden">
+        <div
+          className="fullimage "
+          style={getSlideStylesWithBackground(currentIndex)}
+        ></div>
+      </div>
+      <div className="back">
+        <div
+          onClick={goBack}
+          className="z-10 leftArrow absolute translate-y-[25vh] text-white  text-[60px]  hover:text-customOrange cursor-pointer"
+        >
+          <RiArrowLeftSLine />
         </div>
-        <div id="fullScreen Rooms" className=" absolute h-[32px] w-[32px] bg-white z-10 rounded-lg flex justify-center items-center ml-[550px] mt-[53.5vh] cursor-pointer" onClick={ () => (setBookmark(!bookmark))}> 
-        {bookmark ? <BsBookmark className="fill-customOrange"/> : <BsFillBookmarkFill className=" fill-customOrange"/> }
+        <div
+          onClick={goForward}
+          className="z-10 rightArrow absolute translate-y-[25vh] text-white text-[60px] ml-[540px] hover:text-customOrange cursor-pointer"
+        >
+          <RiArrowRightSLine />
+        </div>
+
+        <div ref={useIcon} className="absolute ">
+          <div
+            id="fullScreen Rooms"
+
+            className=" absolute h-[32px] w-[32px] bg-white z-10 rounded-lg flex justify-center items-center ml-[15px] mt-[53.5vh]"
+            onClick={() => setFullScreen(!screen)}
+          >
+            {screen ? (
+              <HiOutlineArrowsExpand
+
+                onClick={fullScreen}
+                className="text-customOrange h-[20px] w-[20px] cursor-pointer z-30"
+              />
+            ) : (
+              <MdOutlineFullscreenExit
+                onClick={fullScreen}
+                className="text-customOrange h-[25px] w-[25px] cursor-pointer z-30"
+              />
+            )}
+          </div>
+
+
+          <div
+            id="fullScreen Rooms"
+            className="fullScreen absolute h-[32px] w-[32px] bg-white z-10 rounded-lg flex justify-center items-center ml-[550px] mt-[53.5vh] cursor-pointer"
+            onClick={() => setBookmark(!bookmark)}
+          >
+            {bookmark ? (
+              <BsBookmark className="fill-customOrange" />
+            ) : (
+              <BsFillBookmarkFill className=" fill-customOrange" />
+            )}
+          </div>
         </div>
       </div>
-       <div style={slidesContainerOverflowStyles}>
+      <div style={slidesContainerOverflowStyles}>
         <div style={getSlidesContainerStylesWithWidth()} className="">
-          {slides.map((_, slideIndex) => ( 
+          {slides.map((_, slideIndex) => (
             <div
-            className=""
+              className=""
               key={slideIndex}
               style={getSlideStylesWithBackground(slideIndex)}
             ></div>
           ))}
         </div>
-      </div> 
+      </div>
       <div className="flex justify-center text-black text-[20px] cursor-pointer gap-x-[5px]">
         {slides.map((_, slideIndex) => (
           <div

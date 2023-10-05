@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 export const Home = () => {
   return (
-    <div>
-      <Header />
+    <div className="Header">
+      <Header id=""/>
       <div className="flex font-inter justify-center items-center h-[calc(100vh-96px)] gap-x-40 ">
         <div className=" w-3/12">
           <div id="Description" className="font-bold">
