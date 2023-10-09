@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Roomboxs = () => {
     const [bookmark, setBookmark] = useState(true);
   return (
-    <div className='grow basis-[400px] '>
+    <div id="Roomboxes" className='grow basis-[10vw] ml-[40px]'>
        <div id="Rooms" className="Rooms mt-[6vh] h-[260px] w-[350px] rounded-md overflow-hidden">    
         <div className="">
         <Link to="/Rooms/RoomInfo"className=''>

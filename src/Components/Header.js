@@ -27,11 +27,11 @@ const Header = () => {
     navs.current.classList.toggle("sideNav");
   };
   return (
-    <header className=" sticky top-0 z-40 w-[100%]">
+    <header className=" sticky top-0 z-40 w-[100%] ">
       <nav id="" className="">
         <div
           id="header"
-          className="h-20 py-12 px-[10%] shadow-xl flex items-center justify-between  top-0 bg-white overflow-hidden"
+          className="headerHeight h-20 py-12 px-[10%] shadow-xl flex items-center justify-between  top-0 bg-white overflow-hidden"
         >
           <Link to="/" className="cursor-pointer">
             <Logo></Logo>
@@ -130,7 +130,7 @@ const Header = () => {
               className="navBar hidden "
               onClick={showSideNav}
             >
-              <FaBars className="h-[25px] w-[25px] cursor-pointer fill-customOrange" />
+              <FaBars className="h-[25px] w-[25px] cursor-pointer fill-black" />
             </button>
           </div>
         </div>

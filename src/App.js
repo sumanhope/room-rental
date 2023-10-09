@@ -1,11 +1,14 @@
-import { Route, Routes } from 'react-router-dom';
+import { useLocation, Route, Routes } from 'react-router-dom';
 import './App.css';
 import {Home, Rooms, Favorite, About, OurTeam, Contact, Signin, Register, Recover, Room, RoomInfo} from './Components/index';
+
 const App = () => {
+  const location = useLocation();
   return (
+   
     <div id="" className=''>
       <div>
-      <Routes>
+      <Routes location ={location} key={location.path}>
       <Route exact path='/' element={<Home/>}/>
       <Route path='/Rooms' element={<Rooms/>}/>
       <Route path='/Favorite' element={<Favorite/>}/>
@@ -19,6 +22,7 @@ const App = () => {
       </Routes>
       </div>
     </div>
+   
   );
 };
 export default App;

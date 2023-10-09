@@ -3,7 +3,7 @@ import Header from '../Components/Header'
 
 export const About = () => {
   return (
-    <div>
+    <div className='font-inter'>
       <Header/>
       About
     </div>

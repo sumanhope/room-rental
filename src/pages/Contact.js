@@ -3,7 +3,7 @@ import Header from '../Components/Header'
 
 export const Contact = () => {
   return (
-    <div>
+    <div className='font-inter'>
       <Header/>
       Contact
     </div>
