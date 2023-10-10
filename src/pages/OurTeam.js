@@ -6,7 +6,7 @@ import Ajit from "../images/ajit.jpg";
 export const OurTeam = () => {
   return (
     <div className="font-inter">
-      <Header />
+
       <div id="ourTeam" className="flex flex-wrap ml-[18vw]">
       <div id="TeamContainer" className=" Ajit flex gap-x-6 grow basis-[420px] mt-[13vh]">
         <div id="phto" className="h-[150px] w-[150px] flex justify-center items-center">

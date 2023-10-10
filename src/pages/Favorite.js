@@ -27,7 +27,7 @@ export const Favorite = () => {
 
   return (
     <div className="font-inter">
-      <Header />
+     
       <div id="noLogin" className=""></div>
 
       <div className="favLogin hidden">

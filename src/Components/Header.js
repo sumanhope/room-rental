@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
@@ -23,12 +23,16 @@ const Header = () => {
   };
   // console.log(isAuth, username);
 
+  const hideSideNav = () => {
+    navs.current.classList.remove("sideNav");
+  };
+
   const showSideNav = () => {
-    navs.current.classList.toggle("sideNav");
+    navs.current.classList.add("sideNav");
   };
   return (
-    <header className=" sticky top-0 z-40 w-[100%] ">
-      <nav id="" className="">
+    <header className=" sticky top-0 z-40 w-[100%]  ">
+      <nav id="">
         <div
           id="header"
           className="headerHeight h-20 py-12 px-[10%] shadow-xl flex items-center justify-between  top-0 bg-white overflow-hidden"
@@ -39,22 +43,31 @@ const Header = () => {
 
           <div id="nav" ref={navs} className="">
             <div id="navitems" className="flex gap-x-8 font-bold font-inter">
-              <NavLink to="/" className="nav-link" id="Header">
+              <NavLink
+                to="/"
+                className="nav-link"
+                id="Header"
+                onClick={hideSideNav}
+              >
                 Home
               </NavLink>
-              <NavLink to="/Rooms" className="nav-link">
+              <NavLink to="/Rooms" className="nav-link" onClick={hideSideNav}>
                 Rooms
               </NavLink>
-              <NavLink to="/Favorite" className="nav-link">
+              <NavLink
+                to="/Favorite"
+                className="nav-link"
+                onClick={hideSideNav}
+              >
                 Favorite
               </NavLink>
-              <NavLink to="/About" className="nav-link">
+              <NavLink to="/About" className="nav-link" onClick={hideSideNav}>
                 About
               </NavLink>
-              <NavLink to="/OurTeam" className="nav-link">
+              <NavLink to="/OurTeam" className="nav-link" onClick={hideSideNav}>
                 Team
               </NavLink>
-              <NavLink to="/Contact" className="nav-link">
+              <NavLink to="/Contact" className="nav-link" onClick={hideSideNav}>
                 Contact
               </NavLink>
             </div>
@@ -69,29 +82,37 @@ const Header = () => {
               ) : (
                 // If the user is not authenticated, display the "Sign in" link
                 <div className="font-inter">
-                  <NavLink to="/Signin" className="nav-link font-bold">
+                  <NavLink
+                    to="/Signin"
+                    className="nav-link font-bold font-inter"
+                    onClick={hideSideNav}
+                  >
                     Sign in
                   </NavLink>
                 </div>
               )}
               {isAuth ? (
-                <button className="py-3 px-8 bg-customOrange text-white font-bold mt-[18px]" onClick={signUserOut}>
+                <button
+                  className="py-3 px-8 bg-customOrange text-white font-bold mt-[18px]"
+                  onClick={signUserOut}
+                >
                   Logout
                 </button>
               ) : (
                 <div className="font-inter mt-[18px]">
-                <NavLink
-                  to="/Register"
-                  id="register"
-                  className="font-bold  "
-                >
-                  Register
-                </NavLink>
+                  <NavLink
+                    to="/Register"
+                    id="register"
+                    className="font-bold font-inter "
+                    onClick={hideSideNav}
+                  >
+                    Register
+                  </NavLink>
                 </div>
               )}
             </div>
 
-            <button className="navBar sidebar hidden" onClick={showSideNav}>
+            <button className="navBar sidebar hidden" onClick={hideSideNav}>
               <IoCloseSharp className="h-[20px] w-[20px]" />
             </button>
           </div>
@@ -103,7 +124,11 @@ const Header = () => {
                 <div className="nav-link font-bold">{displayname}</div>
               ) : (
                 // If the user is not authenticated, display the "Sign in" link
-                <NavLink to="/Signin" className="nav-link font-bold">
+                <NavLink
+                  to="/Signin"
+                  className="nav-link font-bold"
+                  onClick={hideSideNav}
+                >
                   Sign in
                 </NavLink>
               )}
@@ -119,6 +144,7 @@ const Header = () => {
                   to="/Register"
                   id="register"
                   className="py-3 px-8 bg-customOrange font-bold text-white shadow-lg hover:-translate-y-1 duration-500"
+                  onClick={hideSideNav}
                 >
                   Register
                 </Link>

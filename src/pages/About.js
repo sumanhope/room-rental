@@ -5,7 +5,7 @@ import { IoIosArrowForward } from "react-icons/io";
 export const About = () => {
   return (
     <div>
-      <Header />
+     
       <div className="flex font-inter justify-center items-center h-[calc(100vh-96px)] gap-x-40 ">
         <div
           className="text-black text-opacity-75 text-xs mt-[10px] p-4 border border-gray-100 rounded shadow-xl h-[400px] w-[500px]">

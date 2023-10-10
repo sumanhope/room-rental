@@ -17,7 +17,6 @@ export const RoomInfo = () => {
   
   return (
     <div className="font-inter ">
-      <Header/>
       <div className="flex flex-wrap justify-center mt-[13vh] gap-x-10 z-0">     
         <div className="h-[60vh] w-[600px] " >
             <ImageSlider slides={slides} parentWidth={600}></ImageSlider>  

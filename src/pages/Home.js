@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 export const Home = () => {
   return (
     <div className="Header font-inter  ">
-      <Header/>
       <div id="gapHome" className="flex flex-wrap justify-center items-center h-[calc(100vh-100px)] gap-x-[12vw]  ">
         <div id="introHome" className=" w-[370px]">
           <div id="Description" className="quota font-bold ">
