@@ -79,8 +79,8 @@ export const Signin = () => {
   };
 
   return (
-    <div className="flex h-[100%] w-[100%] overflow-auto ">
-      <div className=" sticky mt-[20vh] left-[5vw] z-10">
+    <div id="loginBody" className="flex h-[100%] w-[100%] overflow-auto fixed justify-start items-center">
+      <div id="loginContainer" className="signUpHeight sticky left-[5vw] z-10 mb-[5vh]">
         <div
           id="loginShadow"
           className="border border-customOrange h-[430px] w-[300px] flex justify-center items-center rounded-lg leading-8 bg-white"
@@ -176,6 +176,7 @@ export const Signin = () => {
         </div>
       </div>
       <img
+      id="backImageLogin"
         className=" ml-[10vw] flex justify-end relative h-[100vh] w-[80vw] object-cover"
         src={Login}
         alt=""

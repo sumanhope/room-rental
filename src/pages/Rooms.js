@@ -1,5 +1,4 @@
 import React , {useState} from "react";
-import Header from "../Components/Header";
 import { AiOutlineSearch } from "react-icons/ai";
 import { RiEqualizerLine } from "react-icons/ri";
 import Roomboxs from "../Components/Roomboxs";
@@ -11,7 +10,6 @@ export const Rooms = () => {
 
   return (
     <div id="Header" className="font-inter">
-      <Header id="" className='z-10' />
       <div  id="wholeRoom" className="">
       <div id="searchSectionContainer" className="ml-[8vw] ">
       <Filterpopup show={showFilter} close={ () => setShowFilter(false)}/>

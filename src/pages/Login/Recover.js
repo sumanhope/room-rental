@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 
 export const Recover = () => {
   return (
-    <div className='flex h-[100%] w-[100%] overflow-auto'>
-        <div className=' sticky mt-[35vh] left-[5vw] z-10'>
+    <div  id="loginBody" className='flex h-[100%] w-[100%] overflow-auto fixed justify-start items-center'>
+        <div id="loginContainer" className=' sticky left-[5vw] z-10 mb-[10vh]'>
     <div id='Shadow' className='border border-customOrange h-[250px] w-[300px] flex justify-center items-center rounded-lg leading-8 bg-white'>
         <div className=''>
             <div className='font-bold font-inter text-xl opacity-70'>
@@ -32,7 +32,7 @@ export const Recover = () => {
       
     </div>
     </div>
-    <img className=" ml-[10vw] flex justify-end relative h-[100vh] w-[80vw] object-cover" src={Login} alt=""/>
+    <img id="backImageLogin" className=" ml-[10vw] flex justify-end relative h-[100vh] w-[80vw] object-cover" src={Login} alt=""/>
     </div>
   )
 }

@@ -79,11 +79,11 @@ export const Register = () => {
   }
 
   return (
-    <div className="flex h-[100%] w-[100%] overflow-auto">
-      <div className=" sticky mt-[8vh] left-[5vw] z-10">
+    <div id="loginBody" className="flex h-[100%] w-[100%] overflow-auto fixed justify-start items-center">
+      <div id="loginContainer" className="sticky  left-[5vw] z-10">
         <div
           id="Shadow"
-          className="border border-customOrange h-[580px] w-[300px] flex justify-center items-center rounded-lg leading-8 bg-white"
+          className="border border-customOrange h-[540px] w-[280px] flex justify-center items-center rounded-lg leading-8 bg-white mb-[10vh]"
         >
           <div className="">
             <form onSubmit={handleSignUp}>
@@ -200,6 +200,7 @@ export const Register = () => {
         </div>
       </div>
       <img
+      id="backImageLogin"
         className=" ml-[10vw] flex justify-end relative h-[100vh] w-[80vw] object-cover"
         src={Login}
         alt=""
