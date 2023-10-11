@@ -5,29 +5,28 @@ import { Link } from "react-router-dom";
 
 export const Home = () => {
   return (
-    <div>
-      <Header />
-      <div className="flex font-inter justify-center items-center h-[calc(100vh-96px)] gap-x-40 ">
-        <div className=" w-3/12">
-          <div id="Description" className="font-bold">
+    <div className="Header font-inter  ">
+      <div id="gapHome" className="flex flex-wrap justify-center items-center h-[calc(100vh-100px)] gap-x-[12vw]  ">
+        <div id="introHome" className=" w-[370px]">
+          <div id="Description" className="quota font-bold ">
             Reserve your room now
           </div>
-          <div className="text-4xl font-bold w-12/12  mt-[10px] ">
+          <div id="title" className="text-4xl font-bold w-[370px] mt-[10px] ">
             Save <span className=" text-customOrange">money</span> with our
             rental room
           </div>
           <div
             id="Description"
-            className="text-black text-opacity-75 text-xs w-[100%]  mt-[30px]"
+            className= "quota2 text-black text-opacity-75 text-xs w-[100%]  mt-[30px]"
           >
             Rent rooms with reasonable price, beautiful location, flexible
             layout options and much more. Rent the room of your dreams.
           </div>
-          <div className="flex gap-x-16 mt-[30px]">
+          <div className="homeButtonContainer flex flex-wrap gap-x-[4vw] mt-[30px] ">
             <Link
               to="/Rooms"
               id="Shadow"
-              className="py-3 px-4 bg-customOrange font-bold text-white  hover:-translate-y-1 duration-500 flex "
+              className="button py-[10px] px-[15px] bg-customOrange font-bold text-white  hover:-translate-y-1 duration-500 flex justify-center items-center basis-[150px]"
             >
               Rent Room{" "}
               <span>
@@ -39,9 +38,10 @@ export const Home = () => {
                 </svg>
               </span>
             </Link>
-            <button
+            <Link
+            to="/About"
               id="Learn more"
-              className="py-3 px-4 bg-black font-bold text-white shadow-lg hover:-translate-y-1 duration-500 flex"
+              className="button bg-black font-bold text-white shadow-lg hover:-translate-y-1 duration-500 flex justify-center items-center basis-[150px]"
             >
               Learn More
               <svg
@@ -50,11 +50,11 @@ export const Home = () => {
               >
                 <path d="M13.1714 12.0007L8.22168 7.05093L9.63589 5.63672L15.9999 12.0007L9.63589 18.3646L8.22168 16.9504L13.1714 12.0007Z"></path>
               </svg>
-            </button>
+            </Link>
           </div>
         </div>
-        <div className="">
-          <img className="h-[400px] w-[500px]" src={Image} alt="Image" />
+        <div id="homeFliped" className="">
+          <img id="introImage" className="h-[400px] w-[500px]" src={Image} alt="" />
         </div>
       </div>
     </div>

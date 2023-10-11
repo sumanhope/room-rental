@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useRef, useState} from "react";
 import Room from "../images/room.jpg";
 import Sofa from "../images/sofa.jpg";
 import Temple from "../images/temple.jpg";
-import Header from "../Components/Header";
 import ImageSlider from "../Components/ImageSlider";
+
 
 export const RoomInfo = () => {
     const slides = [
@@ -12,16 +12,17 @@ export const RoomInfo = () => {
         {url : Temple , title: "Image2"}
     ]
 
+   
+  
   return (
-    <div className="font-inter">
-      <Header/>
-      <div className="flex flex-wrap justify-center mt-[13vh] gap-x-10 z-0">
-        <div className="h-[60vh] w-[600px] " >
-            <ImageSlider slides={slides} parentWidth={600}></ImageSlider>  
+    <div id="wholeRoomInfo" className="font-inter ">
+      <div className="flex flex-wrap justify-center mt-[13vh] gap-x-10 z-0">     
+        <div id="imageSliderContainer" className="h-[60vh] w-[600px]" >
+            <ImageSlider id="imageSlider" className="" slides={slides} parentWidth={600}></ImageSlider>  
           {/* <img className="h-[60vh] w-[45vw]" src={Room} alt=""></img> */}
         </div>
-        <div className="overflow-y-scroll h-[60vh] pr-[2vw] overflow-hidden">
-          <div className="text-2xl mt-[8px] ">Bhaktapur Durbar</div>
+        <div  id="RoomdetailsContainer" className="overflow-y-scroll h-[60vh] pr-[2vw] overflow-hidden scroll-smooth ">
+          <div id="Roomdetails" className="text-2xl mt-[8px] ">Bhaktapur Durbar</div>
           <div className="text-sm">
             <div className="mt-[8px]"> Rooms - {2} </div>
             <div className="mt-[8px]"> SanoThimi, Bhaktapur</div>
@@ -42,7 +43,8 @@ export const RoomInfo = () => {
               Garden
             </button>
           </div>
-          <div className="Roomdetails w-[460px] text-justify text-sm mt-[15px] opacity-80">
+          <div id="">
+          <div id="Roomdescription" className="Roomdetails w-[460px] text-justify text-sm mt-[15px] opacity-80">
             It is a long established fact that a reader will be distracted by
             the readable content of a page when looking at its layout. The point
             of using Lorem Ipsum is that it has a more-or-less normal
@@ -55,8 +57,8 @@ export const RoomInfo = () => {
             and the like).
           </div>
           <div>
-            <div className="underline mt-[10px] opacity-80">Terms and Conditions</div>
-            <div className="Terms  w-[460px] text-justify text-sm mt-[10px] mb-[8px] opacity-80">
+            <div className=" mt-[15px] opacity-80 text-sm font-bold">Terms and Conditions</div>
+            <div id="Roomdescription" className="Terms  w-[460px] text-justify text-sm mt-[15px] mb-[8px] opacity-80">
               It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout. The
               point of using Lorem Ipsum is that it has a more-or-less normal
@@ -68,6 +70,7 @@ export const RoomInfo = () => {
               have evolved over the years, sometimes by accident, sometimes on
               purpose (injected humour and the like).
             </div>
+          </div>
           </div>
         </div>
       </div>

@@ -1,10 +1,15 @@
-import { Route, Routes } from 'react-router-dom';
+import { useLocation, Route, Routes } from 'react-router-dom';
 import './App.css';
-import {Home, Rooms, Favorite, About, OurTeam, Contact, Signin, Register, Recover, Room, RoomInfo} from './Components/index';
+import Header from "../src/Components/Header";
+import {Home, Rooms, Favorite, About, OurTeam, Contact, Signin, Register, Recover, Room, RoomInfo, UserProfile} from './Components/index';
+
 const App = () => {
+  const location = useLocation();
   return (
-    <div>
-      <Routes>
+    <div id="" className=''>
+      <Header/>
+      <div>
+      <Routes location ={location} key={location.path}>
       <Route exact path='/' element={<Home/>}/>
       <Route path='/Rooms' element={<Rooms/>}/>
       <Route path='/Favorite' element={<Favorite/>}/>
@@ -15,8 +20,11 @@ const App = () => {
       <Route path='/Register' element={<Register/>}/>
       <Route path='/Recover' element={<Recover/>}/>
       <Route path='/Rooms/RoomInfo' element={<RoomInfo/>}/>
+      <Route path='/UserProfile' element={<UserProfile/>}/>
       </Routes>
+      </div>
     </div>
+   
   );
 };
 export default App;

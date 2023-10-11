@@ -1,40 +1,90 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@600&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media screen and (max-width: 1195px) {
+  .navBar {
+    display: block;
+  }
+
+  #navitems {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  header #nav {
+    position: fixed;
+    top: -150vh;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    background-color: white;
+    transition: 1s;
+    color: #f9482b;
+    gap: 18px;
+  }
+
+  .sideNav {
+    transform: translateY(150vh);
+  }
+}
+
+@media screen and (max-width: 666px) {
+  #headerLogin {
+    display: none;
+  }
+
+  #sideNavLogin {
+    display: block;
+  }
+}
+
 body {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-#Shadow{
+#Shadow {
   box-shadow: 0 4px 15px 0 #fca79a, 0 6px 20px 0 #fca79a;
 }
 
-#loginShadow{
+#loginShadow {
   box-shadow: 0 4px 15px 0 #fdd2cc, 0 6px 20px 0 #fdd2cc;
-
 }
 
-.active{
+.active {
   border-bottom: solid 2px black;
 }
 
 .nav-link:not(.active)::after {
-  content: '';
+  content: "";
   display: block;
   width: 0;
   height: 2px;
   background: #000;
-  transition: width .5s;
+  transition: width 0.5s;
 }
 
 .nav-link:not(.active):hover::after {
@@ -43,22 +93,429 @@ code {
 }
 @keyframes animate {
   0% {
-      left: 0;
+    left: 0;
   }
 
   50% {
-      left: 100%;
+    left: 100%;
   }
 
   0% {
-      left: 0;
+    left: 0;
   }
 }
 
-#Description{
+#Description {
   line-height: 20px;
 }
 
-#Rooms{
+#Rooms {
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Rooms {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.screen {
+  display: block;
+  height: 80vh;
+  width: 10vw;
+  position: absolute;
+  z-index: 10;
+  top: 18vh;
+}
+
+.iconMove {
+  top: 38vh;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.favNotLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
+  opacity: 70%;
+}
+
+.inputOutline {
+  display: flex;
+  font-size: 14px;
+  margin-top: 10px;
+  height: 38px;
+  width: 180px;
+  border: solid 1px rgba(0, 0, 0, 1);
+  border-radius: 8px;
+}
+
+.inputInnerline {
+  padding-left: 6px;
+  width: 100%;
+  border-radius: 8px;
+  opacity: 70%;
+  outline: none;
+}
+
+@media screen and (max-width: 989px) {
+  #introImage {
+    height: 300px;
+    width: 350px;
+  }
+
+  .button {
+    font-size: 14px;
+    flex-basis: 135px;
+  }
+
+  .quota,
+  .quota2,
+  .homeButtonContainer {
+    margin-bottom: 1vh;
+  }
+
+  #title {
+    margin-bottom: 5vh;
+    font-size: 35px;
+  }
+}
+
+@media screen and (max-width: 818px) {
+  #homeFliped {
+    display: none;
+  }
+
+  .button {
+    font-size: 14px;
+    display: static;
+  }
+
+  .homeButtonContainer {
+    gap: 6vw;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  #introHome {
+    width: 320px;
+  }
+
+  .homeButtonContainer {
+    gap: 10vw;
+  }
+
+  #title {
+    line-height: 35px;
+    font-size: 30px;
+    margin-bottom: 20px;
+    width: 310px;
+  }
+
+  .quota {
+    margin-bottom: 15px;
+  }
+
+  .quota2 {
+    margin-top: 0px;
+    text-align: justify;
+  }
+
+  .Logo {
+    font-size: 15px;
+    margin: -5px 0 -5px 0;
+  }
+
+  .headerHeight {
+    height: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .headerIcon {
+    height: 40px;
+    margin-right: 8px;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  #title {
+    font-size: 28px;
+  }
+
+  #introHome {
+    width: 300px;
+  }
+
+  .homeButtonContainer {
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 1369px) {
+  #Roomboxes {
+    flex-basis: 20vw;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  #ourTeam {
+    margin-left: 10vw;
+  }
+
+  #TeamContainer {
+    margin-top: 8vh;
+  }
+
+  #phto {
+    height: 125px;
+    width: 125px;
+  }
+
+  #name {
+    font-size: 16px;
+  }
+
+  #Task {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 504px) {
+  #buttonFilters {
+    display: none;
+  }
+
+  #Roomboxes {
+    margin-left: 0;
+    flex-grow: 0;
+  }
+
+  #wholeRoom {
+    margin-left: 0vw;
+  }
+
+  #searchSectionContainer {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+
+  #roomBoxesContainer {
+    padding: 0;
+  }
+
+  #RoomsFilter {
+    height: 520px;
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  #Roomboxes {
+    margin-left: 0;
+    flex-grow: 0;
+  }
+
+  #wholeRoom {
+    margin-left: 0vw;
+  }
+
+  #searchSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100px;
+  }
+
+  #filter {
+    display: none;
+  }
+
+  #search {
+    padding: 8px 0 8px 0;
+    width: 250px;
+    justify-content: flex-start;
+  }
+
+  #searchSectionContainer {
+    width: 100vw;
+    margin-bottom: 0;
+    height: 60px;
+  }
+
+  #roomBoxesContainer {
+    padding: 0;
+  }
+
+  #hiddenFilter {
+    display: block;
+    margin-left: 210px;
+  }
+
+  #roomBoxesContainer {
+    margin-top: 20px;
+  }
+
+  #Rooms {
+    height: 260px;
+    width: 300px;
+  }
+
+  #phto {
+    height: 110px;
+    width: 110px;
+  }
+
+  #ourTeam{
+    margin-left: 10vw;
+  }
+
+  #Task {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  #TeamContainer {
+    gap: 10px;
+  }
+
+  #ourTeam {
+    margin-left: 5vw;
+  }
+}
+
+/* login */
+
+@media screen and (max-width: 1024px) {
+  .signUpHeight{
+    margin-bottom: 10vh;
+  }
+
+}
+
+@media screen and (max-width: 740px) {
+  #backImageLogin{
+    display: none;
+  }
+
+  #loginBody{
+    justify-content: center;
+  }
+
+  #loginContainer{
+    left: 0;
+  }
+  
+}
+
+/* Room info */
+@media screen and (max-width: 1123px) {
+
+  #wholeRoomInfo{
+    padding: 0 50px 0 50px;
+  }
+
+  #RoomdetailsContainer{
+    margin-top: 80px;
+    margin-bottom: 50px;
+    overflow-y: hidden;
+    height: 100%;
+    width: 680px;
+   
+  }
+
+  #Roomdescription{
+    width: 665px;
+  }
+  
+  #Roomdetails{
+    
+  }
+} 
+
+
+@media screen and (max-width: 769px) {
+
+  #wholeRoomInfo{
+    padding: 0 50px 0 50px;
+  }
+
+  #RoomdetailsContainer{
+    margin-top: 80px;
+    margin-bottom: 50px;
+    overflow-y: hidden;
+    height: 100%;
+    width: 80vw;
+  }
+
+  #Roomdescription{
+    width: 90vw;
+  }
+
+}
+
+@media screen and (max-width: 640px) {
+  
+  #imageSliderContainer{
+    width: 90vw;
+  }
+
+  #rightArrow{
+    margin-left: 79vw;
+  }
+
+  #Scale{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 577px) {
+  
+  #rightArrow{
+    margin-left: 75vw;
+  }
+
+  #wholeRoomInfo{
+    padding: 0;
+  }
+
+  #RoomdetailsContainer{
+    width: 90vw;
+  }
+
+  
+}
+
+@media screen and (max-width: 321px) {
+  
+  #rightArrow{
+    margin-left: 71vw;
+  }
+}
+
+/* UserProfile */
+
+@media screen and (max-width: 660px) {
+
+  #UserProfileInfo{
+    display: block;
+  }
+
+  #UserInfoElement{
+    margin-left: 0;
+  }
+
+}
+
+@media screen and (max-width: 426px) {
+
+  #UserProfileContainer{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
 }
