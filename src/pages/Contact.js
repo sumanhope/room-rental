@@ -6,7 +6,6 @@ import { BsTelephone, BsChat } from 'react-icons/bs';
 export const Contact = () => {
   return (
     <div>
-      <Header />
       <div className=''>
         <img className="absolute inset-0 h-full w-full object-cover"
           src={Image}
@@ -77,6 +76,7 @@ export const Contact = () => {
         </div>
       </div>
     </div >
+    </div>
   )
 }
 
