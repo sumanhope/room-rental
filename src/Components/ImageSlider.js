@@ -82,14 +82,14 @@ const ImageSlider = ({ slides, parentWidth, props }) => {
 
 
   return (
-    <div className="h-[100%]">
+    <div className="h-[100%] ">
       <div ref={usefull} className="hidden">
         <div
           className="fullimage "
           style={getSlideStylesWithBackground(currentIndex)}
         ></div>
       </div>
-      <div className="back">
+      <div id="imageIcons" className="back">
         <div
           onClick={goBack}
           className="z-10 leftArrow absolute translate-y-[25vh] text-white  text-[60px]  hover:text-customOrange cursor-pointer"
@@ -98,6 +98,7 @@ const ImageSlider = ({ slides, parentWidth, props }) => {
         </div>
         <div
           onClick={goForward}
+          id="rightArrow"
           className="z-10 rightArrow absolute translate-y-[25vh] text-white text-[60px] ml-[540px] hover:text-customOrange cursor-pointer"
         >
           <RiArrowRightSLine />
@@ -105,7 +106,7 @@ const ImageSlider = ({ slides, parentWidth, props }) => {
 
         <div ref={useIcon} className="absolute ">
           <div
-            id="fullScreen Rooms"
+            id="Scale"
 
             className=" absolute h-[32px] w-[32px] bg-white z-10 rounded-lg flex justify-center items-center ml-[15px] mt-[53.5vh]"
             onClick={() => setFullScreen(!screen)}
@@ -126,7 +127,7 @@ const ImageSlider = ({ slides, parentWidth, props }) => {
 
 
           <div
-            id="fullScreen Rooms"
+            id="rightArrow"
             className="fullScreen absolute h-[32px] w-[32px] bg-white z-10 rounded-lg flex justify-center items-center ml-[550px] mt-[53.5vh] cursor-pointer"
             onClick={() => setBookmark(!bookmark)}
           >

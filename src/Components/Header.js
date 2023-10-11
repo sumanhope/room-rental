@@ -78,7 +78,7 @@ const Header = () => {
             >
               {isAuth ? (
                 // If the user is authenticated, display the username
-                <div className="font-bold cursor-pointer">{displayname}</div>
+                <NavLink to="/UserProfile" className="nav-link font-bold flex justify-center" onClick={hideSideNav}>{displayname}</NavLink>
               ) : (
                 // If the user is not authenticated, display the "Sign in" link
                 <div className="font-inter">
@@ -121,7 +121,7 @@ const Header = () => {
             <div id="headerLogin" className="login flex items-center gap-x-8">
               {isAuth ? (
                 // If the user is authenticated, display the username
-                <div className="nav-link font-bold">{displayname}</div>
+                <NavLink to="/UserProfile" className="nav-link font-bold">{displayname}</NavLink>
               ) : (
                 // If the user is not authenticated, display the "Sign in" link
                 <NavLink
