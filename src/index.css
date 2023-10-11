@@ -19,7 +19,7 @@
 
   header #nav {
     position: fixed;
-    top: -120vh;
+    top: -150vh;
     left: 0;
     height: 100%;
     width: 100%;
@@ -35,7 +35,7 @@
   }
 
   .sideNav {
-    transform: translateY(120vh);
+    transform: translateY(150vh);
   }
 }
 
@@ -410,4 +410,112 @@ code {
     left: 0;
   }
   
+}
+
+/* Room info */
+@media screen and (max-width: 1123px) {
+
+  #wholeRoomInfo{
+    padding: 0 50px 0 50px;
+  }
+
+  #RoomdetailsContainer{
+    margin-top: 80px;
+    margin-bottom: 50px;
+    overflow-y: hidden;
+    height: 100%;
+    width: 680px;
+   
+  }
+
+  #Roomdescription{
+    width: 665px;
+  }
+  
+  #Roomdetails{
+    
+  }
+} 
+
+
+@media screen and (max-width: 769px) {
+
+  #wholeRoomInfo{
+    padding: 0 50px 0 50px;
+  }
+
+  #RoomdetailsContainer{
+    margin-top: 80px;
+    margin-bottom: 50px;
+    overflow-y: hidden;
+    height: 100%;
+    width: 80vw;
+  }
+
+  #Roomdescription{
+    width: 90vw;
+  }
+
+}
+
+@media screen and (max-width: 640px) {
+  
+  #imageSliderContainer{
+    width: 90vw;
+  }
+
+  #rightArrow{
+    margin-left: 79vw;
+  }
+
+  #Scale{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 577px) {
+  
+  #rightArrow{
+    margin-left: 75vw;
+  }
+
+  #wholeRoomInfo{
+    padding: 0;
+  }
+
+  #RoomdetailsContainer{
+    width: 90vw;
+  }
+
+  
+}
+
+@media screen and (max-width: 321px) {
+  
+  #rightArrow{
+    margin-left: 71vw;
+  }
+}
+
+/* UserProfile */
+
+@media screen and (max-width: 660px) {
+
+  #UserProfileInfo{
+    display: block;
+  }
+
+  #UserInfoElement{
+    margin-left: 0;
+  }
+
+}
+
+@media screen and (max-width: 426px) {
+
+  #UserProfileContainer{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
 }

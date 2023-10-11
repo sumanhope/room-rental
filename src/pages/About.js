@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from '../Components/Header'
 import Image from "../images/indoor.png";
 import { IoIosArrowForward } from "react-icons/io";
 export const About = () => {
