@@ -46,7 +46,7 @@ export const Rooms = () => {
         </div>
       </div>
 
-<div id="roomBoxesContainer" className="ml-[0vw] px-[5%]">
+<div id="roomBoxesContainer" className="ml-[0vw] px-[5%] pb-[5vh]">
       <div className="flex flex-wrap  justify-center ">
         <Roomboxs />
         <Roomboxs />
@@ -54,7 +54,7 @@ export const Rooms = () => {
         <Roomboxs />
         <Roomboxs />
         <Roomboxs />
-       
+      
       </div>
       </div>
     </div>

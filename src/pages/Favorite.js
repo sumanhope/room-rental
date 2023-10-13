@@ -52,7 +52,7 @@ export const Favorite = () => {
           
         </div>
         </div>
-        <div id="roomBoxesContainer" className="ml-[0vw] px-[5%]">
+        <div id="roomBoxesContainer" className="ml-[0vw] px-[5%] pb-[5vh]">
       <div className="flex flex-wrap  justify-center ">
         <Roomboxs />
         <Roomboxs />
