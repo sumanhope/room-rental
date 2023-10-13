@@ -421,7 +421,7 @@ code {
 
   #RoomdetailsContainer{
     margin-top: 80px;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
     overflow-y: hidden;
     height: 100%;
     width: 680px;
@@ -430,10 +430,6 @@ code {
 
   #Roomdescription{
     width: 665px;
-  }
-  
-  #Roomdetails{
-    
   }
 } 
 
@@ -446,7 +442,7 @@ code {
 
   #RoomdetailsContainer{
     margin-top: 80px;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
     overflow-y: hidden;
     height: 100%;
     width: 80vw;
@@ -519,3 +515,65 @@ code {
     margin: 0;
   }
 }
+
+/* editpost page */
+
+#RoomName::placeholder{
+  font-size: 16px;
+}
+
+@media screen and (max-width: 1123px) {
+  #RoomdescriptionEdit{
+    width: 665px;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  #RoomdescriptionEdit{
+    width: 79vw;
+  }
+}
+
+@media screen and (max-width: 577px) {
+  #RoomdescriptionEdit{
+    width: 88vw;
+  }
+}
+
+@media screen and (max-width: 515px) {
+  #editTag{
+    width: 88vw;
+    row-gap: 10px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .userPost{
+    width: 80vw;
+  }
+
+}
+
+@media screen and (max-width: 425px) {
+  #RoomName{
+    width: 60vw;
+  }
+
+}
+
+
+@media screen and (max-width: 375px) {
+  #UserProfileSecondContainer{
+    margin-left: 8vw;
+  }
+
+}
+
+@media screen and (max-width: 334px) {
+  #UserProfileSecondContainer{
+    margin-left: 3vw;
+  }
+
+}
+
+

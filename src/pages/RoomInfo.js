@@ -29,7 +29,7 @@ export const RoomInfo = () => {
             <div className="mt-[8px]"> Monthly Price - NPR {15000}</div>
             <div className="mt-[8px]">Land Lord Contact - {9861717223}</div>
           </div>
-          <div className="mt-[15px]">
+          <div id="editTag" className="mt-[15px] flex flex-wrap w-[460px]">
             <button className=" mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-[13px] opacity-100 font-regular font-inter">
               Modern
             </button>
