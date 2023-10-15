@@ -26,7 +26,7 @@ export const Rooms = () => {
       }
     };
     getRoomList();
-  }, []);
+  }, [roomCollectionRef]);
 
   return (
     <div id="Header" className="font-inter">
@@ -87,7 +87,11 @@ export const Rooms = () => {
             <Roomboxs />
             <Roomboxs /> */}
             {roomList.map((room) => (
-              <Roomboxs RoomFloor={room.Floor} UploadDate={room.Date} />
+              <Roomboxs
+                RoomFloor={room.Floor}
+                UploadDate={room.Date}
+                RoomId={room.id}
+              />
             ))}
           </div>
         </div>
