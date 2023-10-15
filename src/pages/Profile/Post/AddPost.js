@@ -59,7 +59,7 @@ export const AddPost = () => {
         Location: location,
         MonthlyRent: price,
         ContactNo: contactno,
-        Mordern: modern,
+        Modern: modern,
         Traditional: traditional,
         Garage: garage,
         Garden: garden,

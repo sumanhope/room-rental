@@ -3,8 +3,9 @@ import Room from "../images/room.jpg";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const Roomboxs = ({ RoomFloor, UploadDate }) => {
+const Roomboxs = ({ RoomFloor, UploadDate, RoomId }) => {
   const [bookmark, setBookmark] = useState(true);
+  const data = { roomid: RoomId };
   return (
     <div id="Roomboxes" className="grow basis-[10vw] ml-[40px]">
       <div
@@ -12,7 +13,7 @@ const Roomboxs = ({ RoomFloor, UploadDate }) => {
         className="Rooms mt-[6vh] h-[260px] w-[350px] rounded-md overflow-hidden"
       >
         <div className="">
-          <Link to="/Rooms/RoomInfo" className="">
+          <Link to={`/Rooms/RoomInfo?roomId=${data.roomid}`} className="">
             <div className="h-[200px] w-[350px] bg-center bg-cover cursor-pointer">
               <img src={Room} className=" h-[200px] w-[350px] " alt="" />
             </div>
