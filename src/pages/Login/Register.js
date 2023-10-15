@@ -79,7 +79,10 @@ export const Register = () => {
   }
 
   return (
-    <div id="loginBody" className="flex h-[100%] w-[100%] overflow-auto fixed justify-start items-center">
+    <div
+      id="loginBody"
+      className="flex h-[100%] w-[100%] overflow-auto fixed justify-start items-center"
+    >
       <div id="loginContainer" className="sticky  left-[5vw] z-10">
         <div
           id="Shadow"
@@ -200,7 +203,7 @@ export const Register = () => {
         </div>
       </div>
       <img
-      id="backImageLogin"
+        id="backImageLogin"
         className=" ml-[10vw] flex justify-end relative h-[100vh] w-[80vw] object-cover"
         src={Login}
         alt=""
