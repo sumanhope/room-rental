@@ -1,15 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsHouseAdd } from "react-icons/bs";
 import { GetUserInfo } from "../../config/user-info";
-import EditPost from "./UserPost";
-import { Link } from 'react-router-dom';
-
+import UserPost from "./UserPost";
+import { Link } from "react-router-dom";
+import { db } from "../../config/firebase-config";
+import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 
 export const Profile = () => {
-  const { username, email, isAuth } = GetUserInfo();
+  const { username, email, isAuth, uid } = GetUserInfo();
   const [userName, setUserName] = useState("");
   const [emailInput, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userRooms, setUserRooms] = useState([]);
+
+  useEffect(() => {
+    const fetchUserRooms = async () => {
+      // Reference to the user's document
+      const userDocRef = doc(db, "users", uid);
+
+      try {
+        // Get the user's document
+        const userDoc = await getDoc(userDocRef);
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          const userRoomIds = userData.rooms || [];
+          // Fetch room data for each room ID
+          const roomDataPromises = userRoomIds.map(async (roomId) => {
+            const roomDocRef = doc(db, "rooms", roomId);
+            const roomDoc = await getDoc(roomDocRef);
+            return roomDoc.data();
+          });
+
+          const userRoomData = await Promise.all(roomDataPromises);
+
+          setUserRooms(userRoomData);
+        }
+      } catch (error) {
+        console.error("Error fetching user rooms:", error);
+      }
+    };
+
+    fetchUserRooms();
+  }, []);
   const message = (
     <p className="w-[250px]">
       Use 8 or more characters, with a mix of letters, numbers and symbols
@@ -89,10 +121,9 @@ export const Profile = () => {
             id="editPostContainer"
             className="ownPosts mt-[4vh] mr-[10%] flex flex-wrap mb-[10vh] gap-x-[5vh] gap-y-[5vh]"
           >
-            {/* show user post in this div */}
-            <EditPost />
-            <EditPost />
-            <EditPost />
+            {userRooms.map((room) => (
+              <UserPost RoomFloor={room.Floor} UploadDate={room.Date} />
+            ))}
           </div>
         </div>
       </div>

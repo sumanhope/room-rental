@@ -1,25 +1,93 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Room from "../../../images/room.jpg";
 import Sofa from "../../../images/sofa.jpg";
-import Temple from "../../../images/temple.jpg";
 import UploadImage from "./UploadImage";
 import { AiOutlineDelete } from "react-icons/ai";
 import Deletepopup from "../../../Components/Deletepopup";
 import { BiCheckbox, BiSolidCheckboxChecked } from "react-icons/bi";
+import { db } from "../../../config/firebase-config";
+import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
+import { GetUserInfo } from "../../../config/user-info";
+
+function getDate() {
+  const today = new Date();
+  const monthIndex = today.getMonth();
+  const year = today.getFullYear();
+  const date = today.getDate();
+
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const month = monthNames[monthIndex];
+  return `${month} ${date}, ${year}`;
+}
 
 export const AddPost = () => {
   const [deletePost, setDeletePost] = useState(false);
   const [name, setName] = useState("");
-  const [rooms, setRooms] = useState("");
+  const [rooms, setRooms] = useState(0);
   const [location, setLocation] = useState("");
-  const [price, setPrice] = useState("");
-  const [number, setNumber] = useState("");
+  const [price, setPrice] = useState(0);
+  const [contactno, setNumber] = useState("");
   const [modern, setModern] = useState(false);
   const [traditional, setTraditional] = useState(false);
   const [garage, setGarage] = useState(false);
   const [garden, setGarden] = useState(false);
   const [description, setDescription] = useState("");
   const [terms, setTerms] = useState("");
+  const [currentDate] = useState(getDate());
+  const roomCollectionRef = collection(db, "rooms");
+  const { uid } = GetUserInfo();
+
+  const onSubmitRoom = async () => {
+    try {
+      const roomRef = await addDoc(roomCollectionRef, {
+        Floor: name,
+        TotalRoom: rooms,
+        Location: location,
+        MonthlyRent: price,
+        ContactNo: contactno,
+        Mordern: modern,
+        Traditional: traditional,
+        Garage: garage,
+        Garden: garden,
+        Description: description,
+        Conditions: terms,
+        Date: currentDate,
+      });
+
+      alert("Room Added");
+
+      //update the user document with the room ID
+      const userId = uid;
+      const userDocRef = doc(db, "users", userId);
+
+      // Get the existing array of room IDs from the user's document
+      const userDoc = await getDoc(userDocRef);
+      const userData = userDoc.data();
+      const roomIds = userData.rooms || [];
+
+      // Add the new room ID to the array
+      roomIds.push(roomRef.id);
+
+      // Update the user document with the updated room IDs array
+      await updateDoc(userDocRef, { rooms: roomIds });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // put uploaded image in url and remove title
   const slides = [
@@ -43,14 +111,14 @@ export const AddPost = () => {
             parentWidth={600}
           ></UploadImage>
           <button className="text-customOrange text-sm underline">
-          Edit Image
-        </button>
+            Edit Image
+          </button>
         </div>
         <div
           id="RoomdetailsContainer"
           className="overflow-y-scroll h-[60vh] pr-[2vw] overflow-hidden scroll-smooth w-[480px] "
         >
-          <div  className="flex justify-between">
+          <div className="flex justify-between">
             {/* word limit  */}
             <input
               value={name}
@@ -109,7 +177,7 @@ export const AddPost = () => {
             <div className="mt-[8px]">
               Land Lord Contact -{" "}
               <input
-                value={number}
+                value={contactno}
                 onChange={(e) => setNumber(e.target.value)}
                 type="number"
                 placeholder="Phone number..."
@@ -193,8 +261,11 @@ export const AddPost = () => {
         </div>
       </div>
       <div className="flex justify-center mt-[5vh] mb-[5vh] gap-x-[10vw]">
-        <button className="px-[50px] py-[8px] bg-customOrange rounded-md text-white text-sm font-bold">
-          Update
+        <button
+          onClick={onSubmitRoom}
+          className="px-[50px] py-[8px] bg-customOrange rounded-md text-white text-sm font-bold"
+        >
+          Add Room
         </button>
       </div>
     </div>
