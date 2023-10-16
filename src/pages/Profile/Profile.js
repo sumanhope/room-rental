@@ -4,10 +4,10 @@ import { GetUserInfo } from "../../config/user-info";
 import UserPost from "./UserPost";
 import { Link } from "react-router-dom";
 import { db } from "../../config/firebase-config";
-import { doc, getDoc, collection, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 export const Profile = () => {
-  const { username, email, isAuth, uid } = GetUserInfo();
+  const { username, email, uid } = GetUserInfo();
   const [userName, setUserName] = useState("");
   const [emailInput, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,11 +28,10 @@ export const Profile = () => {
           const roomDataPromises = userRoomIds.map(async (roomId) => {
             const roomDocRef = doc(db, "rooms", roomId);
             const roomDoc = await getDoc(roomDocRef);
-            return roomDoc.data();
+            const roomData = roomDoc.data();
+            return { id: roomId, ...roomData };
           });
-
           const userRoomData = await Promise.all(roomDataPromises);
-
           setUserRooms(userRoomData);
         }
       } catch (error) {
@@ -41,7 +40,7 @@ export const Profile = () => {
     };
 
     fetchUserRooms();
-  }, []);
+  }, [uid]);
   const message = (
     <p className="w-[250px]">
       Use 8 or more characters, with a mix of letters, numbers and symbols
@@ -122,7 +121,11 @@ export const Profile = () => {
             className="ownPosts mt-[4vh] mr-[10%] flex flex-wrap mb-[10vh] gap-x-[5vh] gap-y-[5vh]"
           >
             {userRooms.map((room) => (
-              <UserPost RoomFloor={room.Floor} UploadDate={room.Date} />
+              <UserPost
+                RoomFloor={room.Floor}
+                UploadDate={room.Date}
+                RoomId={room.id}
+              />
             ))}
           </div>
         </div>

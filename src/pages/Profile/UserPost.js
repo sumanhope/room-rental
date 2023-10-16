@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Room from "../../images/room.jpg";
 
 import { Link } from "react-router-dom";
-const UserPost = ({ RoomFloor, UploadDate }) => {
+const UserPost = ({ RoomFloor, UploadDate, RoomId }) => {
+  const data = { roomid: RoomId };
   return (
     <div id="Roomboxes" className=" grow basis-[10vw]">
       <div
@@ -10,7 +11,7 @@ const UserPost = ({ RoomFloor, UploadDate }) => {
         className="userPost Rooms mt-[0vh] h-[260px] w-[350px] rounded-md overflow-hidden"
       >
         <div className="">
-          <Link to="/Profile/EditPost" className="">
+          <Link to={`/Profile/EditPost?roomId=${data.roomid}`} className="">
             <div className="h-[200px] w-[350px] bg-center bg-cover cursor-pointer">
               {/* only show first image of that post */}
               <img src={Room} className=" h-[200px] w-[350px] " alt="" />
