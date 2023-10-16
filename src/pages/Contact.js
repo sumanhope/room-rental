@@ -7,20 +7,27 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 export const Contact = () => {
   const [name, setName] = useState("");
-  const [phonenumber, setPhonenumber] = useState(0);
+  const [phonenumber, setPhonenumber] = useState();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const refreshInputs = () => {
+    setName("");
+    setPhonenumber();
+    setEmail("");
+    setMessage("");
+  };
 
   const handleContact = async (e) => {
     e.preventDefault();
     try {
-      const docRef = await addDoc(collection(db, "contact"), {
+      await addDoc(collection(db, "contact"), {
         SenderName: name,
         PhoneNumber: phonenumber,
         SenderEmail: email,
         Message: message,
         SendOn: serverTimestamp(),
       });
+      refreshInputs();
       alert("Message has been sent successfully");
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -37,7 +44,7 @@ export const Contact = () => {
 
         <div className="absolute font-inter inset-0 flex flex-col justify-center items-center text-white py-5">
           <div className="mb-4">
-            ABC Company | 9861711723 | Naxal, Kathmandu
+            Room Rental | 9861711723 | Kathmandu, Nepal
           </div>
           <form onSubmit={handleContact}>
             <div className=" bg-white h-[50vh] w-[70vw]">
@@ -56,6 +63,7 @@ export const Contact = () => {
                     <input
                       type="text"
                       placeholder="Your Name"
+                      value={name}
                       required={true}
                       onChange={(e) => setName(e.target.value)}
                       className="bg-transparent border-none outline-none w-full pl-2 placeholder-gray-500 text-black"
@@ -67,7 +75,8 @@ export const Contact = () => {
                     <BsTelephone className="text-customOrange text-lg ml-2" />
                     <input
                       type="number"
-                      placeholder="Your Phone Number"
+                      placeholder="98########"
+                      value={phonenumber}
                       required={true}
                       onChange={(e) => setPhonenumber(e.target.value)}
                       className="bg-transparent border-none outline-none pl-2 w-full placeholder-gray-500 text-black"
@@ -79,7 +88,8 @@ export const Contact = () => {
                     <AiOutlineMail className="text-customOrange text-lg ml-2" />
                     <input
                       type="email"
-                      placeholder="Your Email"
+                      placeholder="xyz@gmail.com"
+                      value={email}
                       required={true}
                       onChange={(e) => setEmail(e.target.value)}
                       className="bg-transparent border-none outline-none pl-2 w-full placeholder-gray-500 text-black"
@@ -94,7 +104,8 @@ export const Contact = () => {
                     <BsChat className="text-customOrange text-lg ml-2 mt-2" />
                     <textarea
                       type="text"
-                      placeholder="Message"
+                      placeholder=" Got a job for us?"
+                      value={message}
                       required={true}
                       onChange={(e) => setMessage(e.target.value)}
                       className="bg-transparent border-none outline-none resize-both pl-2 pt-2 h-[15vh] w-[58vw] placeholder-gray-500 text-black"
