@@ -2,10 +2,33 @@ import React, { useState } from "react";
 import Room from "../images/room.jpg";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { GetUserInfo } from "../config/user-info";
+import { db } from "../config/firebase-config";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 const Roomboxs = ({ RoomFloor, UploadDate, RoomId }) => {
   const [bookmark, setBookmark] = useState(true);
   const data = { roomid: RoomId };
+  const { uid } = GetUserInfo();
+  const addToFav = async () => {
+    try {
+      const userDocRef = doc(db, "users", uid);
+
+      // Get the existing array of room IDs from the user's document
+      const userDoc = await getDoc(userDocRef);
+      const userData = userDoc.data();
+      const roomIds = userData.Favorite || [];
+
+      // Add the new room ID to the array
+      roomIds.push(data.roomid);
+
+      // Update the user document with the updated room IDs array
+      await updateDoc(userDocRef, { Favorite: roomIds });
+      setBookmark(!bookmark);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div id="Roomboxes" className="grow basis-[10vw] ml-[40px]">
       <div
@@ -20,10 +43,7 @@ const Roomboxs = ({ RoomFloor, UploadDate, RoomId }) => {
           </Link>
           <div className="flex justify-between px-[10px] pt-[10px]">
             <div className="text-[14px]">{RoomFloor}</div>
-            <div
-              className="cursor-pointer"
-              onClick={() => setBookmark(!bookmark)}
-            >
+            <div className="cursor-pointer" onClick={() => addToFav()}>
               {bookmark ? (
                 <BsBookmark className="fill-customOrange" />
               ) : (
