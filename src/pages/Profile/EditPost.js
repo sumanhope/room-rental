@@ -7,13 +7,14 @@ import { BiCheckbox, BiSolidCheckboxChecked } from "react-icons/bi";
 import EditImage from "./EditImage";
 import { useLocation } from "react-router-dom";
 import { db } from "../../config/firebase-config";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 export const EditPost = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const roomId = searchParams.get("roomId");
-
+  const navigate = useNavigate();
   const [deletePost, setDeletePost] = useState(false);
   const [name, setName] = useState("");
   const [rooms, setRooms] = useState("");
@@ -54,6 +55,29 @@ export const EditPost = () => {
     // You can use the roomId value here or perform any other actions.
     fetchRoomDetails();
   }, [roomId]);
+
+  const updateRoomDetails = async (id) => {
+    try {
+      const roomDoc = doc(db, "rooms", id);
+      await updateDoc(roomDoc, {
+        Floor: name,
+        TotalRoom: rooms,
+        Location: roomlocation,
+        MonthlyRent: price,
+        ContactNo: number,
+        Modern: modern,
+        Traditional: traditional,
+        Garage: garage,
+        Garden: garden,
+        Description: description,
+        Conditions: terms,
+      });
+      alert("Updated successfully");
+      navigate("/Profile");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // put uploaded image in url and remove title
   const slides = [
@@ -228,7 +252,10 @@ export const EditPost = () => {
         </div>
       </div>
       <div className="flex justify-center mt-[5vh] mb-[5vh] gap-x-[10vw]">
-        <button className="px-[50px] py-[8px] bg-customOrange rounded-md text-white text-sm font-bold">
+        <button
+          onClick={() => updateRoomDetails(roomId)}
+          className="px-[50px] py-[8px] bg-customOrange rounded-md text-white text-sm font-bold"
+        >
           Update
         </button>
       </div>
