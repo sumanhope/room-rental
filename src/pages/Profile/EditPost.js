@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Room from "../../images/room.jpg";
 import Sofa from "../../images/sofa.jpg";
 import { AiOutlineDelete } from "react-icons/ai";
 import Deletepopup from "../../Components/Deletepopup";
 import { BiCheckbox, BiSolidCheckboxChecked } from "react-icons/bi";
 import EditImage from "./EditImage";
+import { useLocation } from "react-router-dom";
+import { db } from "../../config/firebase-config";
+import { doc, getDoc } from "firebase/firestore";
 
 export const EditPost = () => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const roomId = searchParams.get("roomId");
+
   const [deletePost, setDeletePost] = useState(false);
   const [name, setName] = useState("");
   const [rooms, setRooms] = useState("");
-  const [location, setLocation] = useState("");
+  const [roomlocation, setroomLocation] = useState("");
   const [price, setPrice] = useState("");
   const [number, setNumber] = useState("");
   const [modern, setModern] = useState(false);
@@ -19,6 +26,34 @@ export const EditPost = () => {
   const [garden, setGarden] = useState(false);
   const [description, setDescription] = useState("");
   const [terms, setTerms] = useState("");
+
+  useEffect(() => {
+    const fetchRoomDetails = async () => {
+      const roomDocRef = doc(db, "rooms", roomId);
+      try {
+        const roomDoc = await getDoc(roomDocRef);
+        if (roomDoc.exists()) {
+          const roomDetails = roomDoc.data();
+          setName(roomDetails.Floor);
+          setRooms(roomDetails.TotalRoom);
+          setroomLocation(roomDetails.Location);
+          setPrice(roomDetails.MonthlyRent);
+          setNumber(roomDetails.ContactNo);
+          setModern(roomDetails.Modern);
+          setTraditional(roomDetails.Traditional);
+          setGarage(roomDetails.Garage);
+          setGarden(roomDetails.Garden);
+          setDescription(roomDetails.Description);
+          setTerms(roomDetails.Conditions);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    // You can use the roomId value here or perform any other actions.
+    fetchRoomDetails();
+  }, [roomId]);
 
   // put uploaded image in url and remove title
   const slides = [
@@ -32,6 +67,7 @@ export const EditPost = () => {
         className=" absolute"
         delete={deletePost}
         close={() => setDeletePost(false)}
+        roomId={roomId}
       />
       <div className="flex flex-wrap justify-center mt-[10vh] gap-x-10 z-0">
         <div id="imageSliderContainer" className="h-[60vh] w-[600px]">
@@ -42,14 +78,14 @@ export const EditPost = () => {
             parentWidth={600}
           ></EditImage>
           <button className="text-customOrange text-sm underline">
-          Edit Image
-        </button>
+            Edit Image
+          </button>
         </div>
         <div
           id="RoomdetailsContainer"
           className="overflow-y-scroll h-[60vh] pr-[2vw] overflow-hidden scroll-smooth w-[480px] "
         >
-          <div  className="flex justify-between">
+          <div className="flex justify-between">
             {/* word limit  */}
             <input
               value={name}
@@ -83,8 +119,8 @@ export const EditPost = () => {
             </div>
             <div className="mt-[8px]">
               <input
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
+                value={roomlocation}
+                onChange={(e) => setroomLocation(e.target.value)}
                 type="text"
                 placeholder="Location..."
                 className="border-[2px] border-black rounded-md border-opacity-40 pl-[5px] h-[30px]"
