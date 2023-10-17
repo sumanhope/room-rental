@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Header from "../Components/Header";
 import { GetUserInfo } from "../config/user-info";
 import { AiOutlineSearch } from "react-icons/ai";
 import { RiEqualizerLine } from "react-icons/ri";
 import Roomboxs from "../Components/Roomboxs";
 import Filterpopup from "../Components/Filterpopup";
 import { db } from "../config/firebase-config";
-import { doc, getDoc, collection } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
+import { BsBookmark } from "react-icons/bs";
 
 export const Favorite = () => {
   const { username, isAuth, uid } = GetUserInfo();
@@ -32,6 +32,7 @@ export const Favorite = () => {
           return { id: roomId, ...roomData };
         });
         const userRoomData = await Promise.all(roomDataPromises);
+
         setFavList(userRoomData);
       }
     } catch (error) {
@@ -92,14 +93,25 @@ export const Favorite = () => {
             </div>
           </div>
           <div id="roomBoxesContainer" className="ml-[0vw] px-[5%] pb-[5vh]">
-            <div className="flex flex-wrap  justify-center ">
-              {favList.map((room) => (
-                <Roomboxs
-                  RoomFloor={room.Floor}
-                  UploadDate={room.Date}
-                  RoomId={room.id}
-                />
-              ))}
+            <div className="flex flex-wrap justify-center">
+              {favList.length === 0 ? (
+                <p className="mt-60">
+                  Use{" "}
+                  <spam>
+                    <BsBookmark />
+                  </spam>{" "}
+                  to bookmark rooms{" "}
+                </p>
+              ) : (
+                favList.map((room) => (
+                  <Roomboxs
+                    key={room.id}
+                    RoomFloor={room.Floor}
+                    UploadDate={room.Date}
+                    RoomId={room.id}
+                  />
+                ))
+              )}
             </div>
           </div>
         </div>

@@ -88,6 +88,7 @@ export const Rooms = () => {
             <Roomboxs /> */}
             {roomList.map((room) => (
               <Roomboxs
+                key={room.id}
                 RoomFloor={room.Floor}
                 UploadDate={room.Date}
                 RoomId={room.id}
