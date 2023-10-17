@@ -1,6 +1,5 @@
-import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import React, { useRef } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import { GetUserInfo } from "../config/user-info";
 import { signOut } from "firebase/auth";
@@ -12,11 +11,12 @@ const Header = () => {
   const { username, isAuth } = GetUserInfo();
   const displayname = isAuth ? username : null;
   const navs = useRef();
+  const navigate = useNavigate();
   const signUserOut = async () => {
     try {
       await signOut(auth);
       localStorage.clear();
-      window.location.reload();
+      navigate("/");
     } catch (err) {
       console.error(err);
     }
@@ -78,7 +78,13 @@ const Header = () => {
             >
               {isAuth ? (
                 // If the user is authenticated, display the username
-                <NavLink to="/Profile" className="nav-link font-bold flex justify-center" onClick={hideSideNav}>{displayname}</NavLink>
+                <NavLink
+                  to="/Profile"
+                  className="nav-link font-bold flex justify-center"
+                  onClick={hideSideNav}
+                >
+                  {displayname}
+                </NavLink>
               ) : (
                 // If the user is not authenticated, display the "Sign in" link
                 <div className="font-inter">
@@ -121,7 +127,9 @@ const Header = () => {
             <div id="headerLogin" className="login flex items-center gap-x-8">
               {isAuth ? (
                 // If the user is authenticated, display the username
-                <NavLink to="/Profile" className="nav-link font-bold">{displayname}</NavLink>
+                <NavLink to="/Profile" className="nav-link font-bold">
+                  {displayname}
+                </NavLink>
               ) : (
                 // If the user is not authenticated, display the "Sign in" link
                 <NavLink

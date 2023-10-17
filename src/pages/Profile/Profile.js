@@ -122,6 +122,7 @@ export const Profile = () => {
           >
             {userRooms.map((room) => (
               <UserPost
+                key={room.id}
                 RoomFloor={room.Floor}
                 UploadDate={room.Date}
                 RoomId={room.id}

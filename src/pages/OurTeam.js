@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../Components/Header";
 import { BsLinkedin, BsGithub } from "react-icons/bs";
 import Ajit from "../images/ajit.jpg";
 import Suman from "../images/suman.jpg";
