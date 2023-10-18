@@ -261,7 +261,7 @@ code {
 }
 
 @media screen and (max-width: 1369px) {
-  #Roomboxes {
+  .Roomboxes {
     flex-basis: 20vw;
   }
 }
@@ -294,23 +294,28 @@ code {
     display: none;
   }
 
-  #Roomboxes {
+  .Roomboxes {
     margin-left: 0;
     flex-grow: 0;
   }
 
-  #wholeRoom {
+  .wholeRoom {
     margin-left: 0vw;
   }
 
-  #searchSectionContainer {
+  .searchSectionContainer {
     display: flex;
     justify-content: center;
     margin: 0;
   }
 
-  #roomBoxesContainer {
+  .roomBoxesContainer {
     padding: 0;
+    margin-left: 0;
+  }
+
+  .roomBoxesinnerContainer{
+    justify-content: center;
   }
 
   #RoomsFilter {
@@ -320,27 +325,27 @@ code {
 }
 
 @media screen and (max-width: 376px) {
-  #Roomboxes {
+  .Roomboxes {
     margin-left: 0;
     flex-grow: 0;
   }
 
-  #wholeRoom {
+  .wholeRoom {
     margin-left: 0vw;
   }
 
-  #searchSection {
+  .searchSection {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100px;
+    height: 45px;
   }
 
-  #filter {
+  .filter {
     display: none;
   }
 
-  #search {
+  .search {
     padding: 8px 0 8px 0;
     width: 250px;
     justify-content: flex-start;
@@ -356,7 +361,7 @@ code {
     padding: 0;
   }
 
-  #hiddenFilter {
+  .hiddenFilter {
     display: block;
     margin-left: 210px;
   }
@@ -421,7 +426,7 @@ code {
 /* Room info */
 @media screen and (max-width: 1123px) {
 
-  #wholeRoomInfo{
+  .wholeRoomInfo{
     padding: 0 50px 0 50px;
   }
 
@@ -442,7 +447,7 @@ code {
 
 @media screen and (max-width: 769px) {
 
-  #wholeRoomInfo{
+  .wholeRoomInfo{
     padding: 0 50px 0 50px;
   }
 
@@ -481,7 +486,7 @@ code {
     margin-left: 75vw;
   }
 
-  #wholeRoomInfo{
+  .wholeRoomInfo{
     padding: 0;
   }
 

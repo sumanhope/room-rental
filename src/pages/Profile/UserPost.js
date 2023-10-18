@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const UserPost = ({ RoomFloor, UploadDate, RoomId }) => {
   const data = { roomid: RoomId };
   return (
-    <div id="Roomboxes" className=" grow basis-[10vw]">
+    <div id="" className="Roomboxes">
       <div
         id="Rooms"
         className="userPost Rooms mt-[0vh] h-[260px] w-[350px] rounded-md overflow-hidden"
@@ -22,7 +22,7 @@ const UserPost = ({ RoomFloor, UploadDate, RoomId }) => {
           </div>
         </div>
         <div className="flex justify-end text-[9px] mr-[10px] mt-[5px]">
-          Posted on {UploadDate}
+        {UploadDate}
         </div>
       </div>
     </div>

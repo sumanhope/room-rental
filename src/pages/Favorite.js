@@ -59,16 +59,16 @@ export const Favorite = () => {
       <div id="noLogin" className=""></div>
 
       <div className="favLogin hidden">
-        <div id="wholeRoom" className="">
-          <div id="searchSectionContainer" className="ml-[8vw] ">
+        <div  className="wholeRoom">
+          <div  className="searchSectionContainer ml-[8vw] ">
             <Filterpopup show={showFilter} close={() => setShowFilter(false)} />
             <div
-              id="searchSection"
-              className=" flex font-inter mt-[6vh]  w-[350px]"
+          
+              className="searchSection flex font-inter mt-[6vh]  w-[350px]"
             >
               <div
-                id="search"
-                className="flex  justify-around items-center border-2 border-black border-opacity-50 rounded-md text-sm "
+        
+                className="search flex  justify-around items-center border-2 border-black border-opacity-50 rounded-md text-sm "
               >
                 <AiOutlineSearch className=" h-[25px] w-[25px] fill-customOrange ml-[8px] pl-[0px] cursor-pointer" />
                 <input
@@ -76,12 +76,12 @@ export const Favorite = () => {
                   placeholder="Search..."
                 ></input>
                 <RiEqualizerLine
-                  id="hiddenFilter"
-                  className="h-[20px] w-[20px] fill-customOrange absolute ml-[180px] z-[1] cursor-pointer hidden"
+                
+                  className="hiddenFilter h-[20px] w-[20px] fill-customOrange absolute ml-[180px] z-[1] cursor-pointer hidden"
                   onClick={() => setShowFilter(true)}
                 />
               </div>
-              <div id="filter" className="w-[0px] flex items-center ml-[15px]">
+              <div className="filter w-[0px] flex items-center ml-[15px]">
                 <button
                   className="border-2 border-black border-opacity-50 pr-[40px] py-[8px] rounded-md pl-[15px]"
                   onClick={() => setShowFilter(true)}
@@ -92,14 +92,14 @@ export const Favorite = () => {
               </div>
             </div>
           </div>
-          <div id="roomBoxesContainer" className="ml-[0vw] px-[5%] pb-[5vh]">
-            <div className="flex flex-wrap justify-center">
+          <div className="roomBoxesContainer ml-[40px] px-[5%] pb-[5vh]">
+            <div className="roomBoxesinnerContainer flex flex-wrap justify-start gap-x-[8%] ">
               {favList.length === 0 ? (
-                <p className="mt-60">
+                <p className="flex opacity-70 w-[100%] mt-[30vh] justify-center items-center">
                   Use{" "}
-                  <spam>
-                    <BsBookmark />
-                  </spam>{" "}
+                  <span className="px-[8px]">
+                    <BsBookmark  className="mt-[3px]"/>
+                  </span>{" "}
                   to bookmark rooms{" "}
                 </p>
               ) : (

@@ -14,6 +14,8 @@ export const Profile = () => {
   const [userRooms, setUserRooms] = useState([]);
 
   useEffect(() => {
+    console.log(userRooms.length);
+    noOfRooms();
     const fetchUserRooms = async () => {
       // Reference to the user's document
       const userDocRef = doc(db, "users", uid);
@@ -39,6 +41,8 @@ export const Profile = () => {
       }
     };
 
+   
+
     fetchUserRooms();
   }, [uid]);
   const message = (
@@ -46,6 +50,16 @@ export const Profile = () => {
       Use 8 or more characters, with a mix of letters, numbers and symbols
     </p>
   );
+
+  const noOfRooms = () => {
+    if (userRooms.length > 0) {
+      document.getElementById("editPostContainer").style.display = "none";
+    } else if (userRooms.length === 0) {
+      const element = document.getElementById("EmptyPostCheck");
+      element.innerHTML = "No posts...";
+    }
+  };
+
   return (
     <div id="UserProfileContainer" className="font-inter">
       <div id="UserProfileSecondContainer" className="ml-[11vw]">
@@ -56,6 +70,7 @@ export const Profile = () => {
               <div className="opacity-70 text-sm mt-[15px]">Username</div>
               <div className=" text-sm mt-[10px] h-[40px] w-[250px] border-[1px] border-black border-opacity-60 rounded-md flex">
                 <input
+                 name="username"
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
                   required
@@ -68,6 +83,7 @@ export const Profile = () => {
               <div className="opacity-70 text-sm mt-[15px]">Email</div>
               <div className=" text-sm mt-[10px] h-[40px] w-[250px] border-[1px] border-black border-opacity-60 rounded-md flex">
                 <input
+                 name="emailinput"
                   value={emailInput}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -97,6 +113,7 @@ export const Profile = () => {
               </div>
               <div className=" text-sm mt-[10px] h-[40px] w-[250px] border-[1px] border-black border-opacity-60 rounded-md flex">
                 <input
+                name="email"
                   // value={email}
                   // onChange={(e) => setEmail(e.target.value)}
                   className="pl-[6px] w-[100vw] rounded-md opacity-70 outline-none "
@@ -109,16 +126,17 @@ export const Profile = () => {
             Update
           </button>
         </form>
-        <div className="posts">
-          <div className="text-xl mt-[4vh] flex gap-x-[5px]">
+        <div className="posts ">
+          <div className="text-xl mt-[4vh] flex  justify-between  mr-[11vw]  items-center">
             Posts{" "}
-            <Link to="/Profile/AddPost" className="">
-              <BsHouseAdd className="h-[20px] w-[20px] mt-[3px] text-customOrange cursor-pointer" />
+            <Link to="/Profile/AddPost" className="flex px-[20px] py-[5px] bg-customOrange text-white gap-x-[10px] rounded-md text-sm">
+              <BsHouseAdd className="h-[20px] w-[20px] mt-[3px] text-white cursor-pointer " />
+              <p className="text-white mt-[2px]">Upload Post</p>
             </Link>
           </div>
           <div
             id="editPostContainer"
-            className="ownPosts mt-[4vh] mr-[10%] flex flex-wrap mb-[10vh] gap-x-[5vh] gap-y-[5vh]"
+            className="ownPosts mt-[4vh] mr-[10%] flex flex-wrap mb-[10vh] gap-x-[6%] gap-y-[5vh]"
           >
             {userRooms.map((room) => (
               <UserPost
@@ -128,6 +146,7 @@ export const Profile = () => {
                 RoomId={room.id}
               />
             ))}
+            <div id="EmptyPostCheck" className="flex justify-center w-[100%] mt-[10px]"></div>
           </div>
         </div>
       </div>
