@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Room from "../../../images/room.jpg";
 import Sofa from "../../../images/sofa.jpg";
 import UploadImage from "./UploadImage";
-import { AiOutlineDelete } from "react-icons/ai";
 import Deletepopup from "../../../Components/Deletepopup";
 import { BiCheckbox, BiSolidCheckboxChecked } from "react-icons/bi";
 import { db } from "../../../config/firebase-config";
@@ -111,7 +110,7 @@ export const AddPost = () => {
             parentWidth={600}
           ></UploadImage>
           <button className="text-customOrange text-sm underline">
-            Edit Image
+            Add Image
           </button>
         </div>
         <div
@@ -125,13 +124,11 @@ export const AddPost = () => {
               onChange={(e) => setName(e.target.value)}
               type="text"
               id="RoomName"
-              placeholder="Name of the Room..."
-              className="text-2xl mt-[8px] border-[2px] border-black rounded-md border-opacity-40 pl-[5px]"
+              placeholder="Floor Number..."
+              className="text-xl mt-[8px] border-[2px] border-black rounded-md border-opacity-40 pl-[5px] h-[40px]"
               required
             />
-            <button onClick={() => setDeletePost(true)}>
-              <AiOutlineDelete className="h-[25px] w-[25px] text-customOrange mt-[12px] cursor-pointer" />
-            </button>
+           
           </div>
 
           <div className="text-sm">
@@ -244,7 +241,7 @@ export const AddPost = () => {
             />
 
             <div>
-              <div className=" mt-[15px] opacity-80 text-sm font-bold">
+              <div className=" mt-[12px] opacity-80 text-sm font-bold">
                 Terms and Conditions
               </div>
               <textarea

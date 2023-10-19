@@ -30,16 +30,16 @@ export const Rooms = () => {
 
   return (
     <div id="Header" className="font-inter">
-      <div id="wholeRoom" className="">
-        <div id="searchSectionContainer" className="ml-[8vw] ">
+      <div id="" className="wholeRoom">
+        <div id="" className="searchSectionContainer ml-[8vw] ">
           <Filterpopup show={showFilter} close={() => setShowFilter(false)} />
           <div
-            id="searchSection"
-            className=" flex font-inter mt-[6vh]  w-[350px]"
+            id=""
+            className="searchSection flex font-inter mt-[6vh]  w-[350px]"
           >
             <div
-              id="search"
-              className="flex  justify-around items-center border-2 border-black border-opacity-50 rounded-md text-sm "
+              id=""
+              className="search flex  justify-around items-center border-2 border-black border-opacity-50 rounded-md text-sm "
             >
               <AiOutlineSearch className=" h-[25px] w-[25px] fill-customOrange ml-[8px] pl-[0px] cursor-pointer" />
               <input
@@ -47,12 +47,12 @@ export const Rooms = () => {
                 placeholder="Search..."
               ></input>
               <RiEqualizerLine
-                id="hiddenFilter"
-                className="h-[20px] w-[20px] fill-customOrange absolute ml-[180px] z-[1] cursor-pointer hidden"
+                
+                className="hiddenFilter h-[20px] w-[20px] fill-customOrange absolute ml-[180px] z-[1] cursor-pointer hidden"
                 onClick={() => setShowFilter(true)}
               />
             </div>
-            <div id="filter" className="w-[0px] flex items-center ml-[15px]">
+            <div className="filter w-[0px] flex items-center ml-[15px]">
               <button
                 className="border-2 border-black border-opacity-50 pr-[40px] py-[8px] rounded-md pl-[15px]"
                 onClick={() => setShowFilter(true)}
@@ -78,14 +78,14 @@ export const Rooms = () => {
           </div>
         </div>
 
-        <div id="roomBoxesContainer" className="ml-[0vw] px-[5%] pb-[5vh]">
-          <div className="flex flex-wrap  justify-center ">
+        <div id="" className="roomBoxesContainer ml-[40px] px-[5%] pb-[5vh]">
+          <div id="" className="roomBoxesinnerContainer flex flex-wrap  justify-start gap-x-[8%]  ">
             {/* <Roomboxs RoomFloor={"Ground Floor"} />
             <Roomboxs />
             <Roomboxs />
             <Roomboxs />
-            <Roomboxs />
             <Roomboxs /> */}
+        
             {roomList.map((room) => (
               <Roomboxs
                 key={room.id}

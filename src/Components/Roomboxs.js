@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Room from "../images/room.jpg";
-import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { GetUserInfo } from "../config/user-info";
 import { db } from "../config/firebase-config";
@@ -30,7 +29,7 @@ const Roomboxs = ({ RoomFloor, UploadDate, RoomId }) => {
     }
   };
   return (
-    <div id="Roomboxes" className="grow basis-[10vw] ml-[40px]">
+    <div  className="Roomboxes  ml-[0px] border border-red-500">
       <div
         id="Rooms"
         className="Rooms mt-[6vh] h-[260px] w-[350px] rounded-md overflow-hidden"
@@ -43,13 +42,6 @@ const Roomboxs = ({ RoomFloor, UploadDate, RoomId }) => {
           </Link>
           <div className="flex justify-between px-[10px] pt-[10px]">
             <div className="text-[14px]">{RoomFloor}</div>
-            <div className="cursor-pointer" onClick={() => addToFav()}>
-              {bookmark ? (
-                <BsBookmark className="fill-customOrange" />
-              ) : (
-                <BsFillBookmarkFill className=" fill-customOrange" />
-              )}
-            </div>
           </div>
         </div>
         <div className="flex justify-end text-[9px] mr-[10px] mt-[5px]">

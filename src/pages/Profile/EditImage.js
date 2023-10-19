@@ -1,9 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
-import { HiOutlineArrowsExpand } from "react-icons/hi";
-import { MdOutlineFullscreenExit } from "react-icons/md";
-import { AiOutlinePicture } from "react-icons/ai";
-
 
 
 const slideStyles = {
@@ -32,14 +28,8 @@ const slidesContainerOverflowStyles = {
 const EditImage = ({ slides, parentWidth, props }) => {
   const autoSlide = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [screen, setFullScreen] = useState(true);
   const usefull = useRef();
   const useIcon = useRef();
-
-  const fullScreen = () => {
-    useIcon.current.classList.toggle("iconMove");
-    usefull.current.classList.toggle("screen");
-  };
 
   const goBack = () => {
     const isFirstSlide = currentIndex === 0;
@@ -111,25 +101,7 @@ const EditImage = ({ slides, parentWidth, props }) => {
         </div> */}
 
         <div ref={useIcon} className="absolute ">
-          <div
-            id="Scale"
 
-            className=" absolute h-[32px] w-[32px] bg-white z-10 rounded-lg flex justify-center items-center ml-[15px] mt-[53.5vh]"
-            onClick={() => setFullScreen(!screen)}
-          >
-            {screen ? (
-              <HiOutlineArrowsExpand
-
-                onClick={fullScreen}
-                className="text-customOrange h-[20px] w-[20px] cursor-pointer z-30"
-              />
-            ) : (
-              <MdOutlineFullscreenExit
-                onClick={fullScreen}
-                className="text-customOrange h-[25px] w-[25px] cursor-pointer z-30"
-              />
-            )}
-          </div>
         </div>
       </div>
       <div style={slidesContainerOverflowStyles}>

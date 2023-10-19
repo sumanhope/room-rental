@@ -121,13 +121,13 @@ export const RoomInfo = (props) => {
               )}
             </div>
           </div> */}
-          <div id="Roomdetails" className="text-2xl mt-[8px] flex items-center">
+          <div id="Roomdetails" className="text-2xl mt-[8px] flex items-center justify-between">
             <span className="mr-2">{roomInfo.Floor}</span>
             <div onClick={() => toggleBookmark()}>
               {isBookmarked ? (
-                <BsFillBookmarkFill className="fill-customOrange" />
+                <BsFillBookmarkFill className="fill-customOrange mt-[2px] h-[20px] cursor-pointer" />
               ) : (
-                <BsBookmark className="fill-customOrange" />
+                <BsBookmark className="fill-customOrange mt-[2px] h-[20px] cursor-pointer" />
               )}
             </div>
           </div>
