@@ -47,8 +47,8 @@ export const Contact = () => {
             Room Rental | 9861711723 | Kathmandu, Nepal
           </div>
           <form onSubmit={handleContact}>
-            <div className=" bg-white h-[50vh] w-[70vw]">
-              <div className="flex justify-center text-customOrange text-2xl mt-5">
+            <div className="bg-white md:w-[100%] lg:w-[110%] xl:w-[110%] md:h-[110%] lg:h-[110%] xl:h-[110%] p-4">
+              <div className="text-customOrange sm:text-3xl text-2xl text-center mt-5">
                 Get in touch
               </div>
 
@@ -56,72 +56,73 @@ export const Contact = () => {
                 Let's talk about your project
               </div>
 
-              <div className="flex mt-4">
-                <div className="text-sm mt-[10px] h-[5vh] w-[15vw] border-[1px] border-black border-opacity-60 rounded-md flex ml-auto">
-                  <div className="flex items-center">
-                    <AiOutlineUser className="text-customOrange text-lg ml-2" />
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      value={name}
-                      required={true}
-                      onChange={(e) => setName(e.target.value)}
-                      className="bg-transparent border-none outline-none w-full pl-2 placeholder-gray-500 text-black"
-                    />
+              <div className="flex flex-col mt-4">
+                <div className="flex flex-col gap-x-10 sm:flex-row">
+                  <div className="text-sm mt-5 border border-black border-opacity-60 rounded-md flex mx-auto ml-auto">
+                    <div className="flex items-center">
+                      <AiOutlineUser className="text-customOrange text-lg ml-2" />
+                      <input
+                        type="text"
+                        placeholder="Your Name"
+                        value={name}
+                        required={true}
+                        onChange={(e) => setName(e.target.value)}
+                        className="bg-transparent border-none outline-none w-full pl-2  h-[5vh] placeholder-gray-500 text-black"
+                      />
+                    </div>
+                  </div>
+                  <div className="text-sm mt-5 border border-black border-opacity-60 rounded-md flex mx-auto">
+                    <div className="flex items-center appearance-none">
+                      <BsTelephone className="text-customOrange text-lg ml-2" />
+                      <input
+                        type="number"
+                        placeholder="98########"
+                        value={phonenumber}
+                        required={true}
+                        onChange={(e) => setPhonenumber(e.target.value)}
+                        className="bg-transparent border-none outline-none pl-2 w-full h-[5vh] placeholder-gray-500 text-black"
+                      />
+                    </div>
+                  </div>
+                  <div className="text-sm mt-5 border border-black border-opacity-60 rounded-md flex mx-auto">
+                    <div className="flex items-center">
+                      <AiOutlineMail className="text-customOrange text-lg ml-2" />
+                      <input
+                        type="email"
+                        placeholder="xyz@gmail.com"
+                        value={email}
+                        required={true}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="bg-transparent border-none outline-none pl-2 w-full h-[5vh] placeholder-gray-500 text-black"
+                      />
+                    </div>
                   </div>
                 </div>
-                <div className="text-sm mt-[10px] h-[5vh] w-[15vw] border-[1px] border-black border-opacity-60 rounded-md flex mx-auto">
-                  <div className="flex items-center appearance-none">
-                    <BsTelephone className="text-customOrange text-lg ml-2" />
-                    <input
-                      type="number"
-                      placeholder="98########"
-                      value={phonenumber}
-                      required={true}
-                      onChange={(e) => setPhonenumber(e.target.value)}
-                      className="bg-transparent border-none outline-none pl-2 w-full placeholder-gray-500 text-black"
-                    />
+                <div className="flex mt-5 ">
+                  <div className="text-sm mt-2 border border-black border-opacity-60 rounded-md flex mx-auto mr-auto">
+                    <div className="flex items-start">
+                      <BsChat className="text-customOrange text-lg ml-2 mt-2" />
+                      <textarea
+                        type="text"
+                        placeholder=" Got a job for us?"
+                        value={message}
+                        required={true}
+                        onChange={(e) => setMessage(e.target.value)}
+                        className="bg-transparent border-none outline-none resize-none pl-2 pt-2 h-[15vh] w-[50vw] placeholder-gray-500 text-black"
+                      />
+                    </div>
                   </div>
                 </div>
-                <div className="text-sm mt-[10px] h-[5vh] w-[15vw] border-[1px] border-black border-opacity-60 rounded-md flex mr-auto">
-                  <div className="flex items-center">
-                    <AiOutlineMail className="text-customOrange text-lg ml-2" />
-                    <input
-                      type="email"
-                      placeholder="xyz@gmail.com"
-                      value={email}
-                      required={true}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="bg-transparent border-none outline-none pl-2 w-full placeholder-gray-500 text-black"
-                    />
-                  </div>
-                </div>
-              </div>
 
-              <div className="flex mt-5 ">
-                <div className="text-sm mt-[10px] border-[1px] border-black border-opacity-60 rounded-md flex mx-auto">
-                  <div className="flex items-start">
-                    <BsChat className="text-customOrange text-lg ml-2 mt-2" />
-                    <textarea
-                      type="text"
-                      placeholder=" Got a job for us?"
-                      value={message}
-                      required={true}
-                      onChange={(e) => setMessage(e.target.value)}
-                      className="bg-transparent border-none outline-none resize-both pl-2 pt-2 h-[15vh] w-[58vw] placeholder-gray-500 text-black"
-                    />
-                  </div>
+                <div className="flex mt-4"></div>
+                <div className="flex justify-center mt-4">
+                  <button
+                    type="submit"
+                    className="bg-customOrange text-white py-2 px-4 rounded-md text-sm h-auto w-auto"
+                  >
+                    Hire Us
+                  </button>
                 </div>
-              </div>
-
-              <div className="flex mt-4"></div>
-              <div className="flex justify-center mt-4">
-                <button
-                  type="submit"
-                  className="bg-customOrange text-white py-2 px-4 rounded-md text-sm h-auto w-auto"
-                >
-                  Hire Us
-                </button>
               </div>
             </div>
           </form>
