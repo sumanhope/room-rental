@@ -13,13 +13,14 @@ export const Favorite = () => {
   const [showFilter, setShowFilter] = useState(false);
   const displayname = isAuth ? username : null;
   const [favList, setFavList] = useState([]);
+  const [test, settest] = useState(0);
 
   const fetchFavList = async () => {
     // Reference to the user's document
     const userDocRef = doc(db, "users", uid);
 
     try {
-      // Get the user's document
+      //Get the user's document
       const userDoc = await getDoc(userDocRef);
       if (userDoc.exists()) {
         const userData = userDoc.data();
@@ -32,8 +33,8 @@ export const Favorite = () => {
           return { id: roomId, ...roomData };
         });
         const userRoomData = await Promise.all(roomDataPromises);
-
         setFavList(userRoomData);
+        console.log(favList);
       }
     } catch (error) {
       console.error("Error fetching user rooms:", error);
@@ -41,7 +42,10 @@ export const Favorite = () => {
   };
   useEffect(() => {
     loginCheck();
-  });
+    if (displayname) {
+      fetchFavList();
+    }
+  }, []);
 
   const loginCheck = () => {
     if (displayname == null) {
@@ -50,7 +54,6 @@ export const Favorite = () => {
       element.innerHTML = "Sign in in to use this feature 📖";
     } else {
       document.querySelector(".favLogin").style.display = "block";
-      fetchFavList();
     }
   };
 
@@ -59,24 +62,17 @@ export const Favorite = () => {
       <div id="noLogin" className=""></div>
 
       <div className="favLogin hidden">
-        <div  className="wholeRoom">
-          <div  className="searchSectionContainer ml-[8vw] ">
+        <div className="wholeRoom">
+          <div className="searchSectionContainer ml-[8vw] ">
             <Filterpopup show={showFilter} close={() => setShowFilter(false)} />
-            <div
-          
-              className="searchSection flex font-inter mt-[6vh]  w-[350px]"
-            >
-              <div
-        
-                className="search flex  justify-around items-center border-2 border-black border-opacity-50 rounded-md text-sm "
-              >
+            <div className="searchSection flex font-inter mt-[6vh]  w-[350px]">
+              <div className="search flex  justify-around items-center border-2 border-black border-opacity-50 rounded-md text-sm ">
                 <AiOutlineSearch className=" h-[25px] w-[25px] fill-customOrange ml-[8px] pl-[0px] cursor-pointer" />
                 <input
                   className="outline-none ml-[8px]"
                   placeholder="Search..."
                 ></input>
                 <RiEqualizerLine
-                
                   className="hiddenFilter h-[20px] w-[20px] fill-customOrange absolute ml-[180px] z-[1] cursor-pointer hidden"
                   onClick={() => setShowFilter(true)}
                 />
@@ -98,7 +94,7 @@ export const Favorite = () => {
                 <p className="flex opacity-70 w-[100%] mt-[30vh] justify-center items-center">
                   Use{" "}
                   <span className="px-[8px]">
-                    <BsBookmark  className="mt-[3px]"/>
+                    <BsBookmark className="mt-[3px]" />
                   </span>{" "}
                   to bookmark rooms{" "}
                 </p>

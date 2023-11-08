@@ -10,23 +10,23 @@ export const Rooms = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [roomList, setRoomList] = useState([]);
   const roomCollectionRef = collection(db, "rooms");
+  const getRoomList = async () => {
+    // Reading the Room Data
+    try {
+      const data = await getDocs(roomCollectionRef);
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setRoomList(filteredData);
+      console.log(filteredData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
-    const getRoomList = async () => {
-      // Reading the Room Data
-      try {
-        const data = await getDocs(roomCollectionRef);
-        const filteredData = data.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        setRoomList(filteredData);
-        //console.log(filteredData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     getRoomList();
-  }, [roomCollectionRef]);
+  }, []);
 
   return (
     <div id="Header" className="font-inter">
@@ -47,7 +47,6 @@ export const Rooms = () => {
                 placeholder="Search..."
               ></input>
               <RiEqualizerLine
-                
                 className="hiddenFilter h-[20px] w-[20px] fill-customOrange absolute ml-[180px] z-[1] cursor-pointer hidden"
                 onClick={() => setShowFilter(true)}
               />
@@ -79,13 +78,16 @@ export const Rooms = () => {
         </div>
 
         <div id="" className="roomBoxesContainer ml-[40px] px-[5%] pb-[5vh]">
-          <div id="" className="roomBoxesinnerContainer flex flex-wrap  justify-start gap-x-[8%]  ">
+          <div
+            id=""
+            className="roomBoxesinnerContainer flex flex-wrap  justify-start gap-x-[8%]  "
+          >
             {/* <Roomboxs RoomFloor={"Ground Floor"} />
             <Roomboxs />
             <Roomboxs />
             <Roomboxs />
             <Roomboxs /> */}
-        
+
             {roomList.map((room) => (
               <Roomboxs
                 key={room.id}

@@ -41,10 +41,8 @@ export const Profile = () => {
       }
     };
 
-   
-
     fetchUserRooms();
-  }, [uid]);
+  }, []);
   const message = (
     <p className="w-[250px]">
       Use 8 or more characters, with a mix of letters, numbers and symbols
@@ -70,7 +68,7 @@ export const Profile = () => {
               <div className="opacity-70 text-sm mt-[15px]">Username</div>
               <div className=" text-sm mt-[10px] h-[40px] w-[250px] border-[1px] border-black border-opacity-60 rounded-md flex">
                 <input
-                 name="username"
+                  name="username"
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
                   required
@@ -83,7 +81,7 @@ export const Profile = () => {
               <div className="opacity-70 text-sm mt-[15px]">Email</div>
               <div className=" text-sm mt-[10px] h-[40px] w-[250px] border-[1px] border-black border-opacity-60 rounded-md flex">
                 <input
-                 name="emailinput"
+                  name="emailinput"
                   value={emailInput}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -113,7 +111,7 @@ export const Profile = () => {
               </div>
               <div className=" text-sm mt-[10px] h-[40px] w-[250px] border-[1px] border-black border-opacity-60 rounded-md flex">
                 <input
-                name="email"
+                  name="email"
                   // value={email}
                   // onChange={(e) => setEmail(e.target.value)}
                   className="pl-[6px] w-[100vw] rounded-md opacity-70 outline-none "
@@ -129,7 +127,10 @@ export const Profile = () => {
         <div className="posts ">
           <div className="text-xl mt-[4vh] flex  justify-between  mr-[11vw]  items-center">
             Posts{" "}
-            <Link to="/Profile/AddPost" className="flex px-[20px] py-[5px] bg-customOrange text-white gap-x-[10px] rounded-md text-sm">
+            <Link
+              to="/Profile/AddPost"
+              className="flex px-[20px] py-[5px] bg-customOrange text-white gap-x-[10px] rounded-md text-sm"
+            >
               <BsHouseAdd className="h-[20px] w-[20px] mt-[3px] text-white cursor-pointer " />
               <p className="text-white mt-[2px]">Upload Post</p>
             </Link>
@@ -146,7 +147,10 @@ export const Profile = () => {
                 RoomId={room.id}
               />
             ))}
-            <div id="EmptyPostCheck" className="flex justify-center w-[100%] mt-[10px]"></div>
+            <div
+              id="EmptyPostCheck"
+              className="flex justify-center w-[100%] mt-[10px]"
+            ></div>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@
 
 # production
 /build
-/trash
+/src/trash
 
 # misc
 .DS_Store

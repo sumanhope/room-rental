@@ -84,7 +84,7 @@ export const RoomInfo = (props) => {
     };
     // You can use the roomId value here or perform any other actions.
     fetchRoomDetails();
-  }, [roomId, userDocRef]);
+  }, []);
   const slides = [
     { url: Room, title: "Image1" },
     { url: Sofa, title: "Image2" },
@@ -121,7 +121,10 @@ export const RoomInfo = (props) => {
               )}
             </div>
           </div> */}
-          <div id="Roomdetails" className="text-2xl mt-[8px] flex items-center justify-between">
+          <div
+            id="Roomdetails"
+            className="text-2xl mt-[8px] flex items-center justify-between"
+          >
             <span className="mr-2">{roomInfo.Floor}</span>
             <div onClick={() => toggleBookmark()}>
               {isBookmarked ? (
