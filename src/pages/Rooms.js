@@ -10,23 +10,56 @@ export const Rooms = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [roomList, setRoomList] = useState([]);
   const roomCollectionRef = collection(db, "rooms");
-  const getRoomList = async () => {
-    // Reading the Room Data
-    try {
-      const data = await getDocs(roomCollectionRef);
-      const filteredData = data.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setRoomList(filteredData);
-      console.log(filteredData);
-    } catch (error) {
-      console.error(error);
+  const [filters, setFilters] = useState({
+    Modern: false,
+    Traditional: false,
+    Garage: false,
+    Garden: false,
+  });
+
+  useEffect(() => {
+    const getRoomList = async (filters) => {
+      try {
+        const data = await getDocs(roomCollectionRef);
+        const filteredData = data.docs
+          .map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }))
+          .filter((room) => {
+            // Check if the room matches all selected filters
+            return Object.keys(filters).every((filterKey) => {
+              return !filters[filterKey] || room[filterKey];
+            });
+          });
+
+        setRoomList(filteredData);
+        console.log(filteredData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getRoomList(filters);
+  }, [filters]);
+
+  const handleFilterButtonClick = (filter) => {
+    if (filter === "All") {
+      // Set all filters to false
+      setFilters({
+        Modern: false,
+        Traditional: false,
+        Garage: false,
+        Garden: false,
+      });
+    } else {
+      // Toggle the selected filter
+      setFilters({
+        ...filters,
+        [filter]: !filters[filter],
+      });
     }
   };
-  useEffect(() => {
-    getRoomList();
-  }, []);
 
   return (
     <div id="Header" className="font-inter">
@@ -62,16 +95,64 @@ export const Rooms = () => {
             </div>
           </div>
           <div id="buttonFilters" className="mt-[4vh]">
-            <button className=" mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter">
+            <button
+              onClick={() => handleFilterButtonClick("All")}
+              className="mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter"
+              style={{
+                backgroundColor: !Object.values(filters).includes(true)
+                  ? "#F9482B"
+                  : "",
+                color: !Object.values(filters).includes(true) ? "white" : "",
+              }}
+            >
+              All
+            </button>
+            <button
+              onClick={() => handleFilterButtonClick("Modern")}
+              className={`mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter ${
+                filters.Modern ? "active" : ""
+              }`}
+              style={{
+                backgroundColor: filters.Modern ? "#F9482B" : "",
+                color: filters.Modern ? "white" : "",
+              }}
+            >
               Modern
             </button>
-            <button className=" mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter">
+            <button
+              onClick={() => handleFilterButtonClick("Traditional")}
+              className={`mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter ${
+                filters.Traditional ? "active" : ""
+              }`}
+              style={{
+                backgroundColor: filters.Traditional ? "#F9482B" : "",
+                color: filters.Traditional ? "white" : "",
+              }}
+            >
               Traditional
             </button>
-            <button className=" mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter">
+            <button
+              onClick={() => handleFilterButtonClick("Garage")}
+              className={`mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter ${
+                filters.Garage ? "active" : ""
+              }`}
+              style={{
+                backgroundColor: filters.Garage ? "#F9482B" : "",
+                color: filters.Garage ? "white" : "",
+              }}
+            >
               Garage
             </button>
-            <button className=" mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter">
+            <button
+              onClick={() => handleFilterButtonClick("Garden")}
+              className={`mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter ${
+                filters.Garden ? "active" : ""
+              }`}
+              style={{
+                backgroundColor: filters.Garden ? "#F9482B" : "",
+                color: filters.Garden ? "white" : "",
+              }}
+            >
               Garden
             </button>
           </div>
@@ -82,12 +163,6 @@ export const Rooms = () => {
             id=""
             className="roomBoxesinnerContainer flex flex-wrap  justify-start gap-x-[8%]  "
           >
-            {/* <Roomboxs RoomFloor={"Ground Floor"} />
-            <Roomboxs />
-            <Roomboxs />
-            <Roomboxs />
-            <Roomboxs /> */}
-
             {roomList.map((room) => (
               <Roomboxs
                 key={room.id}

@@ -108,19 +108,6 @@ export const RoomInfo = (props) => {
           id="RoomdetailsContainer"
           className="overflow-y-scroll h-[60vh] pr-[2vw] overflow-hidden scroll-smooth "
         >
-          {/* <div id="Roomdetails" className="text-2xl mt-[8px] ">
-            {roomInfo.Floor}
-            <div
-              className="  h-[32px] w-[32px] bg-white z-10 rounded-lg flex justify-center items-center ml-[550px] mt-[53.5vh] cursor-pointer"
-              onClick={() => console.log(isBookmarked)}
-            >
-              {isBookmarked ? (
-                <BsFillBookmarkFill className=" fill-customOrange" />
-              ) : (
-                <BsBookmark className="fill-customOrange" />
-              )}
-            </div>
-          </div> */}
           <div
             id="Roomdetails"
             className="text-2xl mt-[8px] flex items-center justify-between"
