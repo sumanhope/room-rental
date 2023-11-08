@@ -1,35 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Room from "../images/room.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GetUserInfo } from "../config/user-info";
-import { db } from "../config/firebase-config";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 const Roomboxs = ({ RoomFloor, UploadDate, RoomId }) => {
-  const [bookmark, setBookmark] = useState(true);
   const data = { roomid: RoomId };
-  const { uid } = GetUserInfo();
-  const addToFav = async () => {
-    try {
-      const userDocRef = doc(db, "users", uid);
+  const { isAuth } = GetUserInfo();
+  const navigate = useNavigate();
 
-      // Get the existing array of room IDs from the user's document
-      const userDoc = await getDoc(userDocRef);
-      const userData = userDoc.data();
-      const roomIds = userData.Favorite || [];
-
-      // Add the new room ID to the array
-      roomIds.push(data.roomid);
-
-      // Update the user document with the updated room IDs array
-      await updateDoc(userDocRef, { Favorite: roomIds });
-      setBookmark(!bookmark);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  if (isAuth === null) {
+    // If isAuth is false, navigate to a "not authorized" page or any other desired page
+    navigate("/");
+    // You can also return null or an error message here, but navigation will happen regardless
+  }
   return (
-    <div  className="Roomboxes  ml-[0px] border border-red-500">
+    <div className="Roomboxes  ml-[0px] ">
       <div
         id="Rooms"
         className="Rooms mt-[6vh] h-[260px] w-[350px] rounded-md overflow-hidden"

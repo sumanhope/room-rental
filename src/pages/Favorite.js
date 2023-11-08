@@ -13,7 +13,6 @@ export const Favorite = () => {
   const [showFilter, setShowFilter] = useState(false);
   const displayname = isAuth ? username : null;
   const [favList, setFavList] = useState([]);
-  const [test, settest] = useState(0);
 
   const fetchFavList = async () => {
     // Reference to the user's document
