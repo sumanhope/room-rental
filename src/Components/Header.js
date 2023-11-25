@@ -16,7 +16,7 @@ const Header = () => {
     try {
       await signOut(auth);
       localStorage.clear();
-      navigate("/");
+      navigate("/Signin");
     } catch (err) {
       console.error(err);
     }

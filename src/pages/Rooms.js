@@ -5,66 +5,51 @@ import Roomboxs from "../Components/Roomboxs";
 import Filterpopup from "../Components/Filterpopup";
 import { db } from "../config/firebase-config";
 import { getDocs, collection } from "firebase/firestore";
+import { GetUserInfo } from "../config/user-info";
 
 export const Rooms = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [roomList, setRoomList] = useState([]);
+  const { username, isAuth } = GetUserInfo();
+  const displayname = isAuth ? username : null;
   const roomCollectionRef = collection(db, "rooms");
-  const [filters, setFilters] = useState({
-    Modern: false,
-    Traditional: false,
-    Garage: false,
-    Garden: false,
-  });
-
   useEffect(() => {
-    const getRoomList = async (filters) => {
+    const getRoomList = async () => {
+      // Reading the Room Data
       try {
         const data = await getDocs(roomCollectionRef);
-        const filteredData = data.docs
-          .map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }))
-          .filter((room) => {
-            // Check if the room matches all selected filters
-            return Object.keys(filters).every((filterKey) => {
-              return !filters[filterKey] || room[filterKey];
-            });
-          });
-
+        const filteredData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
         setRoomList(filteredData);
-        console.log(filteredData);
+        //console.log(filteredData);
       } catch (error) {
         console.error(error);
       }
     };
+    getRoomList();
+  }, [roomCollectionRef]);
 
-    getRoomList(filters);
-  }, [filters]);
+  useEffect(() => {
+    loginCheck();
+  }, []);
 
-  const handleFilterButtonClick = (filter) => {
-    if (filter === "All") {
-      // Set all filters to false
-      setFilters({
-        Modern: false,
-        Traditional: false,
-        Garage: false,
-        Garden: false,
-      });
+  const loginCheck = () => {
+    if (displayname == null) {
+      const element = document.querySelector("#noLogin");
+      element.classList.add("favNotLogin");
+      element.innerHTML = "Sign in in to use this feature 📖";
     } else {
-      // Toggle the selected filter
-      setFilters({
-        ...filters,
-        [filter]: !filters[filter],
-      });
+      document.querySelector(".favLogin").style.display = "block";
     }
   };
 
   return (
     <div id="Header" className="font-inter">
-      <div id="" className="wholeRoom">
-        <div id="" className="searchSectionContainer ml-[8vw] ">
+      <div id="noLogin" className="wholeRoom">
+        <div className="favLogin">
+        <div id="" className="searchSectionContainer  ml-[8vw] ">
           <Filterpopup show={showFilter} close={() => setShowFilter(false)} />
           <div
             id=""
@@ -95,64 +80,16 @@ export const Rooms = () => {
             </div>
           </div>
           <div id="buttonFilters" className="mt-[4vh]">
-            <button
-              onClick={() => handleFilterButtonClick("All")}
-              className="mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter"
-              style={{
-                backgroundColor: !Object.values(filters).includes(true)
-                  ? "#F9482B"
-                  : "",
-                color: !Object.values(filters).includes(true) ? "white" : "",
-              }}
-            >
-              All
-            </button>
-            <button
-              onClick={() => handleFilterButtonClick("Modern")}
-              className={`mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter ${
-                filters.Modern ? "active" : ""
-              }`}
-              style={{
-                backgroundColor: filters.Modern ? "#F9482B" : "",
-                color: filters.Modern ? "white" : "",
-              }}
-            >
+            <button className=" mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter">
               Modern
             </button>
-            <button
-              onClick={() => handleFilterButtonClick("Traditional")}
-              className={`mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter ${
-                filters.Traditional ? "active" : ""
-              }`}
-              style={{
-                backgroundColor: filters.Traditional ? "#F9482B" : "",
-                color: filters.Traditional ? "white" : "",
-              }}
-            >
+            <button className=" mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter">
               Traditional
             </button>
-            <button
-              onClick={() => handleFilterButtonClick("Garage")}
-              className={`mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter ${
-                filters.Garage ? "active" : ""
-              }`}
-              style={{
-                backgroundColor: filters.Garage ? "#F9482B" : "",
-                color: filters.Garage ? "white" : "",
-              }}
-            >
+            <button className=" mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter">
               Garage
             </button>
-            <button
-              onClick={() => handleFilterButtonClick("Garden")}
-              className={`mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter ${
-                filters.Garden ? "active" : ""
-              }`}
-              style={{
-                backgroundColor: filters.Garden ? "#F9482B" : "",
-                color: filters.Garden ? "white" : "",
-              }}
-            >
+            <button className=" mr-[18px] border-2 border-black border-opacity-50 rounded-full px-[20px] py-[8px] text-sm opacity-100 font-regular font-inter">
               Garden
             </button>
           </div>
@@ -163,6 +100,12 @@ export const Rooms = () => {
             id=""
             className="roomBoxesinnerContainer flex flex-wrap  justify-start gap-x-[8%]  "
           >
+            {/* <Roomboxs RoomFloor={"Ground Floor"} />
+            <Roomboxs />
+            <Roomboxs />
+            <Roomboxs />
+            <Roomboxs /> */}
+
             {roomList.map((room) => (
               <Roomboxs
                 key={room.id}
@@ -173,6 +116,7 @@ export const Rooms = () => {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -79,8 +79,6 @@ const ImageSlider = ({ slides, parentWidth, props }) => {
     return () => clearTimeout(autoSlide.current);
   }, [goForward]);
 
-
-
   return (
     <div className="h-[100%] ">
       <div ref={usefull} className="hidden">
@@ -107,13 +105,11 @@ const ImageSlider = ({ slides, parentWidth, props }) => {
         <div ref={useIcon} className="absolute ">
           <div
             id="Scale"
-
             className=" absolute h-[32px] w-[32px] bg-white z-10 rounded-lg flex justify-center items-center ml-[15px] mt-[53.5vh]"
             onClick={() => setFullScreen(!screen)}
           >
             {screen ? (
               <HiOutlineArrowsExpand
-
                 onClick={fullScreen}
                 className="text-customOrange h-[20px] w-[20px] cursor-pointer z-30"
               />
@@ -125,8 +121,7 @@ const ImageSlider = ({ slides, parentWidth, props }) => {
             )}
           </div>
 
-
-          <div
+          {/* <div
             id="rightArrow"
             className="fullScreen absolute h-[32px] w-[32px] bg-white z-10 rounded-lg flex justify-center items-center ml-[550px] mt-[53.5vh] cursor-pointer"
             onClick={() => setBookmark(!bookmark)}
@@ -136,7 +131,7 @@ const ImageSlider = ({ slides, parentWidth, props }) => {
             ) : (
               <BsFillBookmarkFill className=" fill-customOrange" />
             )}
-          </div>
+          </div> */}
         </div>
       </div>
       <div style={slidesContainerOverflowStyles}>

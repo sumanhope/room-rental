@@ -44,7 +44,7 @@ export const Contact = () => {
 
         <div className="absolute font-inter inset-0 flex flex-col justify-center items-center text-white py-5">
           <div className="mb-4">
-            Room Rental | 9861711723 | Kathmandu, Nepal
+            Room Rental | 98######## | Kathmandu, Nepal
           </div>
           <form onSubmit={handleContact}>
             <div className="bg-white md:w-[100%] lg:w-[110%] xl:w-[110%] md:h-[110%] lg:h-[110%] xl:h-[110%] p-4">
